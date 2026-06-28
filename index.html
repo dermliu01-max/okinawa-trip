@@ -19,26 +19,21 @@
     color:var(--ink); padding-bottom:74px; line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  /* Header */
   header{
     position:sticky; top:0; z-index:50;
     background:linear-gradient(135deg,var(--sea) 0%,var(--sea-d) 100%);
-    color:#fff; padding:16px 18px 14px; box-shadow:0 2px 14px rgba(6,106,120,.25);
-    overflow:hidden;
+    color:#fff; padding:16px 18px 14px; box-shadow:0 2px 14px rgba(6,106,120,.25); overflow:hidden;
   }
   header .wave{position:absolute;left:0;right:0;bottom:-1px;height:14px;
-    background:radial-gradient(circle at 10px -4px, var(--sand) 9px, transparent 10px) repeat-x;
-    background-size:20px 14px;}
+    background:radial-gradient(circle at 10px -4px, var(--sand) 9px, transparent 10px) repeat-x;background-size:20px 14px;}
   header h1{font-size:19px;letter-spacing:.5px;display:flex;align-items:center;gap:7px}
   header .sub{font-size:12.5px;opacity:.92;margin-top:3px}
   header .meta{font-size:11.5px;opacity:.85;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 12px}
-  /* Page container */
   main{padding:14px 13px 20px;max-width:560px;margin:0 auto}
   .page{display:none;animation:fade .35s ease}
   .page.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   h2.section{font-size:16px;margin:4px 2px 12px;display:flex;align-items:center;gap:7px;color:var(--sea-d)}
-  /* Day tabs (horizontal scroll) */
   .daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
   .daytabs::-webkit-scrollbar{display:none}
   .daytab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:14px;
@@ -53,39 +48,30 @@
     padding:13px 15px;margin-bottom:13px;box-shadow:0 4px 14px rgba(10,142,160,.25)}
   .dayhead h3{font-size:16px}
   .dayhead .est{font-size:12px;opacity:.95;margin-top:4px}
-  .route{background:#fff7ed;border:1px dashed var(--coral);border-radius:12px;padding:9px 12px;
-    font-size:12px;color:#b5532e;margin-bottom:13px}
-  /* Timeline cards */
+  .route{background:#fff7ed;border:1px dashed var(--coral);border-radius:12px;padding:9px 12px;font-size:12px;color:#b5532e;margin-bottom:13px}
   .tl{position:relative;padding-left:18px}
-  .tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
-    background:linear-gradient(var(--sky),var(--sand))}
+  .tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--sky),var(--sand))}
   .item{position:relative;margin-bottom:12px}
-  .item::before{content:"";position:absolute;left:-16px;top:18px;width:11px;height:11px;border-radius:50%;
-    background:var(--coral);border:2.5px solid #fff;box-shadow:0 0 0 2px var(--sky)}
-  .card{background:var(--card);border-radius:15px;padding:12px 13px;box-shadow:0 2px 10px rgba(23,58,64,.07);
-    border:1px solid var(--line)}
-  .time{font-size:12px;font-weight:700;color:var(--sea);background:#e7f7fa;display:inline-block;
-    padding:1px 9px;border-radius:20px;margin-bottom:6px}
+  .item::before{content:"";position:absolute;left:-16px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--coral);border:2.5px solid #fff;box-shadow:0 0 0 2px var(--sky)}
+  .card{background:var(--card);border-radius:15px;padding:12px 13px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
+  .time{font-size:12px;font-weight:700;color:var(--sea);background:#e7f7fa;display:inline-block;padding:1px 9px;border-radius:20px;margin-bottom:6px}
   .act{font-size:14.5px;font-weight:600;margin-bottom:5px}
   .det{display:flex;flex-wrap:wrap;gap:5px 10px;font-size:11.5px;color:var(--muted);margin-bottom:8px}
   .det span{display:inline-flex;align-items:center;gap:3px}
   .badge-paid{color:var(--green);font-weight:600}
-  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--sea),var(--sea-d));
-    color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:11px;
-    box-shadow:0 3px 9px rgba(10,142,160,.3);margin:2px 6px 2px 0}
+  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:11px;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:2px 6px 2px 0}
   .mapbtn:active{transform:scale(.96)}
   .mapbtn.alt{background:linear-gradient(135deg,#ffb27a,var(--coral))}
   .note-line{font-size:11.5px;color:#b5532e;background:#fff7ed;border-radius:9px;padding:6px 9px;margin-top:6px}
-  /* Generic cards for other tabs */
-  .block{background:#fff;border-radius:15px;padding:14px 15px;margin-bottom:12px;
-    box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
+  .tip-line{font-size:11.5px;color:#0f6e56;background:#e1f5ee;border-radius:9px;padding:6px 9px;margin-top:6px;border-left:3px solid #1d9e75}
+  .block{background:#fff;border-radius:15px;padding:14px 15px;margin-bottom:12px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
   .block h4{font-size:14.5px;color:var(--sea-d);margin-bottom:9px;display:flex;align-items:center;gap:6px}
   .kv{font-size:13px;margin:5px 0;display:flex;gap:8px}
   .kv b{flex:0 0 78px;color:var(--muted);font-weight:600}
   .pill{display:inline-block;background:#e7f7fa;color:var(--sea-d);font-size:11px;padding:2px 9px;border-radius:20px;margin:2px 3px 2px 0}
   .hotel{border-left:4px solid var(--coral)}
   ul.clean{list-style:none}
-  ul.clean li{font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px}
+  ul.clean li{font-size:12.5px;padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px;line-height:1.5}
   ul.clean li:last-child{border:0}
   ul.clean li::before{content:"🐚";flex:0 0 auto}
   .check li::before{content:"☐";font-size:15px;color:var(--coral)}
@@ -96,13 +82,24 @@
   .budget-row small{color:var(--muted);font-size:10.5px;display:block}
   .budget-row.total{font-weight:700;color:var(--sea-d);font-size:14.5px;border:0;padding-top:11px}
   .yen{font-variant-numeric:tabular-nums}
-  /* Bottom nav */
-  nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);
-    backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;
-    box-shadow:0 -2px 14px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
-  nav button{flex:1;background:none;border:0;padding:8px 2px 7px;font-size:10px;color:var(--muted);
-    display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s}
-  nav button .ic{font-size:19px;line-height:1}
+  .mapwrap{position:relative;background:#fff;border-radius:15px;padding:8px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line);overflow:hidden}
+  #routeMap{width:100%;height:auto;display:block;touch-action:none;cursor:grab}
+  #routeMap:active{cursor:grabbing}
+  .zoomctl{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
+  .zoomctl button{width:36px;height:36px;border:none;border-radius:10px;background:rgba(255,255,255,.95);color:var(--sea-d);font-size:18px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.18);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .zoomctl button:active{transform:scale(.92)}
+  .maphint{font-size:11px;color:var(--muted);text-align:center;margin:8px 2px 0}
+  .notebox{margin-top:12px;background:#fff;border-radius:15px;padding:12px 13px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
+  .notebox label{font-size:12.5px;font-weight:600;color:var(--sea-d);display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  textarea.note{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;line-height:1.5;color:var(--ink);resize:vertical;min-height:62px;background:#fbfdfd}
+  textarea.note:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
+  .saved{font-size:11px;color:var(--green);margin-top:5px;min-height:14px}
+  .btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;border:none;font-size:13px;font-weight:600;padding:10px 15px;border-radius:12px;cursor:pointer;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:4px 6px 4px 0}
+  .btn:active{transform:scale(.97)}
+  .btn.ghost{background:#fff;color:var(--sea-d);border:1.5px solid var(--line);box-shadow:none}
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;box-shadow:0 -2px 14px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
+  nav button{flex:1;background:none;border:0;padding:8px 1px 7px;font-size:10px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s}
+  nav button .ic{font-size:18px;line-height:1}
   nav button.active{color:var(--sea)}
   nav button.active .ic{transform:translateY(-2px)}
   .foot{text-align:center;font-size:11px;color:var(--muted);padding:14px 10px 4px}
@@ -113,157 +110,176 @@
 <header>
   <h1>🌺 沖繩親子自駕</h1>
   <div class="sub">6天5夜 ｜ 2026/7/2 – 7/7</div>
-  <div class="meta">
-    <span>👨‍👩‍👧‍👦 4人(2大2小)</span>
-    <span>👶 8個月</span>
-    <span>🧒 7歲</span>
-    <span>🚗 自駕</span>
-  </div>
+  <div class="meta"><span>👨‍👩‍👧‍👦 4人(2大2小)</span><span>👶 8個月</span><span>🧒 7歲</span><span>🚗 自駕</span></div>
   <div class="wave"></div>
 </header>
 
 <main>
-
-  <!-- ====== 每日行程 ====== -->
   <section class="page active" id="p-days">
     <div class="daytabs" id="daytabs"></div>
     <div id="daybodies"></div>
   </section>
 
-  <!-- ====== 路線圖 ====== -->
   <section class="page" id="p-map">
     <h2 class="section">🗺️ 全島行車路線圖</h2>
-    <div class="block" style="padding:8px">
-      <svg viewBox="0 0 380 690" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto" role="img" aria-label="沖繩6天5夜自駕路線圖">
-        <rect x="6" y="6" width="368" height="498" rx="16" fill="#E6F1FB"/>
-        <text x="22" y="34" font-size="13" fill="#0C447C" font-weight="600">沖繩本島 ｜ 自駕路線</text>
-        <text x="356" y="34" text-anchor="end" font-size="11" fill="#185FA5">N ↑</text>
-        <path d="M150,484 C176,456 170,430 178,400 C172,374 182,348 172,320 C178,298 188,250 180,212 C176,198 162,194 158,208 C154,224 156,242 150,252 C140,250 130,258 118,262 C100,250 86,234 98,222 C112,214 128,234 146,254 C150,272 140,292 148,320 C152,350 138,376 148,404 C154,428 138,456 150,484 Z" fill="#C8E6C9" stroke="#97C459" stroke-width="1.5"/>
-        <circle cx="214" cy="246" r="13" fill="#C8E6C9" stroke="#97C459" stroke-width="1.5"/>
-        <path d="M150,470 L146,450 L138,432" fill="none" stroke="#378ADD" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M138,432 L176,410 M176,410 L160,428 M160,428 L138,432" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M138,432 C170,360 200,300 208,256" fill="none" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.1 7"/>
-        <path d="M208,256 L150,300 L155,356" fill="none" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M155,356 L150,300" fill="none" stroke="#EF9F27" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/>
-        <path d="M155,356 C120,320 96,280 98,250" fill="none" stroke="#D4537E" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/>
-        <path d="M155,356 C150,410 148,450 150,476" fill="none" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/>
-        <g font-size="10.5">
-          <circle cx="150" cy="478" r="10" fill="#5F5E5A"/><text x="150" y="481.5" text-anchor="middle" font-size="10" fill="#ffffff">1</text>
-          <text x="165" y="481" font-size="10.5" fill="#2C2C2A">那霸機場 起/終點</text>
-          <circle cx="146" cy="450" r="10" fill="#378ADD"/><text x="146" y="453.5" text-anchor="middle" font-size="10" fill="#ffffff">2</text>
-          <text x="161" y="453" font-size="10.5" fill="#0C447C">PARCO CITY</text>
-          <circle cx="136" cy="430" r="10" fill="#993C1D"/><text x="136" y="433.5" text-anchor="middle" font-size="9" fill="#ffffff">家</text>
-          <text x="151" y="426" font-size="10.5" fill="#712B13">北谷·美國村</text>
-          <text x="151" y="438" font-size="9" fill="#993C1D">D1-2 住宿</text>
-          <circle cx="178" cy="408" r="10" fill="#1D9E75"/><text x="178" y="411.5" text-anchor="middle" font-size="10" fill="#ffffff">4</text>
-          <text x="193" y="406" font-size="10.5" fill="#0F6E56">兒童王國</text>
-          <circle cx="161" cy="426" r="9" fill="#1D9E75"/><text x="161" y="429" text-anchor="middle" font-size="9" fill="#ffffff">5</text>
-          <text x="193" y="418" font-size="10.5" fill="#0F6E56">AEON Rycom</text>
-          <circle cx="214" cy="246" r="10" fill="#D85A30"/><text x="214" y="249.5" text-anchor="middle" font-size="10" fill="#ffffff">6</text>
-          <text x="200" y="270" text-anchor="middle" font-size="10.5" fill="#993C1D">古宇利島</text>
-          <circle cx="150" cy="300" r="10" fill="#854F0B"/><text x="150" y="303.5" text-anchor="middle" font-size="10" fill="#ffffff">7</text>
-          <text x="165" y="303" font-size="10.5" fill="#633806">名護 鳳梨園·動物園</text>
-          <circle cx="155" cy="356" r="10" fill="#993C1D"/><text x="155" y="359.5" text-anchor="middle" font-size="9" fill="#ffffff">家</text>
-          <text x="170" y="352" font-size="10.5" fill="#712B13">瀨良垣 BEB5·萬座毛</text>
-          <text x="170" y="364" font-size="9" fill="#993C1D">D3-6 住宿</text>
-          <circle cx="98" cy="248" r="10" fill="#D4537E"/><text x="98" y="251.5" text-anchor="middle" font-size="10" fill="#ffffff">9</text>
-          <text x="84" y="234" text-anchor="middle" font-size="10.5" fill="#993556">美麗海水族館</text>
-          <circle cx="128" cy="462" r="9" fill="#7F77DD"/><text x="128" y="465" text-anchor="middle" font-size="9" fill="#ffffff">10</text>
-          <text x="58" y="465" font-size="10.5" fill="#3C3489">國際通·好市多</text>
+    <div class="mapwrap">
+      <div class="zoomctl">
+        <button onclick="zoomMap(1.3)" aria-label="放大">＋</button>
+        <button onclick="zoomMap(0.77)" aria-label="縮小">－</button>
+        <button onclick="resetMap()" aria-label="重設" style="font-size:15px">⟳</button>
+      </div>
+      <svg id="routeMap" viewBox="0 0 380 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="沖繩自駕路線圖">
+        <defs>
+          <radialGradient id="seaG" cx="50%" cy="35%" r="80%">
+            <stop offset="0%" stop-color="#eafaff"/><stop offset="100%" stop-color="#cfeef5"/>
+          </radialGradient>
+          <linearGradient id="islG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#dcf0d2"/><stop offset="100%" stop-color="#c4e6b8"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="380" height="540" fill="url(#seaG)"/>
+        <g fill="#bfe6ef" opacity="0.5">
+          <circle cx="40" cy="60" r="2"/><circle cx="330" cy="100" r="2"/><circle cx="60" cy="420" r="2"/>
+          <circle cx="320" cy="380" r="2"/><circle cx="300" cy="470" r="2"/><circle cx="50" cy="200" r="2"/>
         </g>
-        <rect x="6" y="516" width="368" height="168" rx="14" fill="#F1EFE8"/>
-        <text x="22" y="540" font-size="12" fill="#2C2C2A" font-weight="600">每日路線（顏色＝天數）</text>
-        <g font-size="10.5">
-          <rect x="22" y="551" width="22" height="5" rx="2.5" fill="#378ADD"/><text x="52" y="560" fill="#444441">D1 機場→PARCO→北谷</text>
-          <rect x="22" y="571" width="22" height="5" rx="2.5" fill="#1D9E75"/><text x="52" y="580" fill="#444441">D2 北谷→兒童王國→Rycom</text>
-          <rect x="22" y="591" width="22" height="5" rx="2.5" fill="#D85A30"/><text x="52" y="600" fill="#444441">D3 北谷→古宇利→名護→瀨良垣</text>
-          <rect x="22" y="611" width="22" height="5" rx="2.5" fill="#EF9F27"/><text x="52" y="620" fill="#444441">D4 瀨良垣⇄名護（鳳梨園·動物園）</text>
-          <rect x="22" y="631" width="22" height="5" rx="2.5" fill="#D4537E"/><text x="52" y="640" fill="#444441">D5 瀨良垣⇄本部 美麗海水族館</text>
-          <rect x="22" y="651" width="22" height="5" rx="2.5" fill="#7F77DD"/><text x="52" y="660" fill="#444441">D6 瀨良垣→國際通→好市多→機場</text>
+        <text x="20" y="34" font-size="14" fill="#0c6a78" font-weight="700">沖繩本島・自駕路線</text>
+        <text x="360" y="32" text-anchor="end" font-size="12" fill="#1893a5">N ↑</text>
+
+        <path d="M150,470 C178,440 168,414 180,384 C173,356 184,330 173,300 C181,276 191,228 181,190 C176,176 160,172 156,188 C151,206 154,226 147,236 C136,232 124,242 112,246 C92,234 78,216 92,202 C108,193 126,214 146,236 C151,256 139,278 148,308 C153,340 137,366 148,398 C155,424 138,446 150,470 Z" fill="url(#islG)" stroke="#86c06a" stroke-width="2.2" stroke-linejoin="round"/>
+        <circle cx="220" cy="216" r="14" fill="url(#islG)" stroke="#86c06a" stroke-width="2"/>
+
+        <path d="M150,452 L145,428 L136,404" fill="none" stroke="#2f7fd6" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M136,404 L182,378 L162,400 L136,404" fill="none" stroke="#16a07a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M136,404 C172,322 206,262 214,224" fill="none" stroke="#dd5a30" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M214,224 L150,272 L156,330" fill="none" stroke="#dd5a30" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M156,330 L150,272" fill="none" stroke="#ef9f27" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <path d="M156,330 C118,292 92,250 95,218" fill="none" stroke="#d4537e" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
+        <path d="M156,330 C152,388 150,430 150,460" fill="none" stroke="#7f77dd" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
+
+        <g font-size="11.5" style="paint-order:stroke;stroke:#ffffff;stroke-width:3.5px;stroke-linejoin:round">
+          <text x="166" y="456" fill="#3a3a37">①那霸機場 起/終</text>
+          <text x="160" y="430" fill="#0c447c">②PARCO CITY</text>
+          <text x="150" y="396" fill="#7a2e12">🏠 北谷·美國村 D1-2住</text>
+          <text x="196" y="378" fill="#0f6e56">④兒童王國</text>
+          <text x="196" y="392" fill="#0f6e56">⑤AEON Rycom</text>
+          <text x="234" y="220" fill="#8a3417">⑥古宇利島</text>
+          <text x="166" y="276" fill="#7a4708">⑦名護 鳳梨園·動物園</text>
+          <text x="170" y="328" fill="#7a2e12">🏠 瀨良垣BEB5·萬座毛 D3-6住</text>
+          <text x="78" y="208" fill="#8a3357">⑨美麗海水族館</text>
+          <text x="50" y="450" fill="#3c3489">⑩國際通·好市多</text>
         </g>
-        <text x="22" y="678" font-size="9" fill="#888780">※ 示意圖，非精確比例；導航以行程內地圖按鈕為準</text>
+        <g stroke="#ffffff" stroke-width="2.5">
+          <circle cx="150" cy="452" r="10" fill="#5f5e5a"/>
+          <circle cx="146" cy="428" r="10" fill="#2f7fd6"/>
+          <circle cx="136" cy="404" r="11" fill="#993c1d"/>
+          <circle cx="182" cy="378" r="10" fill="#16a07a"/>
+          <circle cx="164" cy="396" r="9" fill="#16a07a"/>
+          <circle cx="214" cy="224" r="11" fill="#dd5a30"/>
+          <circle cx="150" cy="272" r="10" fill="#854f0b"/>
+          <circle cx="156" cy="330" r="11" fill="#993c1d"/>
+          <circle cx="95" cy="216" r="10" fill="#d4537e"/>
+          <circle cx="132" cy="448" r="9" fill="#7f77dd"/>
+        </g>
+        <g font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">
+          <text x="150" y="455.5">1</text><text x="146" y="431.5">2</text><text x="136" y="408" font-size="9">🏠</text>
+          <text x="182" y="381.5">4</text><text x="164" y="399">5</text><text x="214" y="227.5">6</text>
+          <text x="150" y="275.5">7</text><text x="156" y="334" font-size="9">🏠</text><text x="95" y="219.5">9</text>
+          <text x="132" y="451" font-size="9">10</text>
+        </g>
       </svg>
+    </div>
+    <div class="maphint">💡 用右上 ＋／－ 放大縮小，按住可拖曳移動 ｜ ⟳ 回復原狀</div>
+    <div class="block" style="margin-top:12px">
+      <h4>每日路線（顏色＝天數）</h4>
+      <div id="maplegend"></div>
     </div>
   </section>
 
-  <!-- ====== 交通 ====== -->
   <section class="page" id="p-trans">
     <h2 class="section">✈️ 交通 & 接送</h2>
-    <div class="block">
-      <h4>✈️ 機票</h4>
+    <div class="block"><h4>✈️ 機票</h4>
       <div class="kv"><b>去程</b><span>7/2 NU302｜10:05 桃機T2 → 12:45 那霸T1</span></div>
       <div class="kv"><b>回程</b><span>7/7 CI123｜20:55 那霸T1 → 21:30 桃機T2</span></div>
     </div>
-    <div class="block">
-      <h4>🚐 台灣機場接送</h4>
+    <div class="block"><h4>🚐 台灣機場接送</h4>
       <div class="kv"><b>去程</b><span>全鋒（D3815456）｜7/2 06:30 上車</span></div>
       <div class="kv"><b>回程</b><span>肯驛（F15297723）｜依 CI123 21:30 抵達</span></div>
     </div>
-    <div class="block">
-      <h4>🚗 租車 Budget</h4>
+    <div class="block"><h4>🚗 租車 Budget</h4>
       <div class="kv"><b>取車</b><span>7/2 14:30｜那霸機場店</span></div>
       <div class="kv"><b>還車</b><span>7/7 18:30｜豐見城市瀨長3-2</span></div>
       <div class="kv"><b>費用</b><span class="yen">¥30,720（已折樂天券・現地付）</span></div>
       <div class="kv"><b>配備</b><span>含兒童座椅 ✓</span></div>
       <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 還車地點導航</a>
     </div>
-    <div class="block">
-      <h4>🛋️ 機場貴賓室</h4>
-      <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span>
-      <span class="pill">華航醫師卡</span><span class="pill">JCB</span><span class="pill">小童</span>
+    <div class="block"><h4>🛋️ 機場貴賓室</h4>
+      <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span><span class="pill">華航醫師卡</span><span class="pill">JCB</span><span class="pill">小童</span>
     </div>
   </section>
 
-  <!-- ====== 住宿 ====== -->
   <section class="page" id="p-hotel">
     <h2 class="section">🏨 住宿</h2>
     <div id="hotels"></div>
   </section>
 
-  <!-- ====== 行李 ====== -->
   <section class="page" id="p-pack">
     <h2 class="section">🧳 行李清單</h2>
     <p style="font-size:11.5px;color:var(--muted);margin:0 2px 12px">點一下打勾，狀態會記住 ✓</p>
     <div id="packing"></div>
   </section>
 
-  <!-- ====== 預算 ====== -->
   <section class="page" id="p-budget">
     <h2 class="section">💰 預算總覽</h2>
-    <div class="block">
-      <p style="font-size:11.5px;color:var(--muted);margin-bottom:8px">日圓・當地花費（4人）</p>
-      <div id="budget"></div>
-    </div>
+    <div class="block"><p style="font-size:11.5px;color:var(--muted);margin-bottom:8px">日圓・當地花費（4人）</p><div id="budget"></div></div>
     <h2 class="section">📌 實用資訊</h2>
     <div class="block" id="tips"></div>
-    <h2 class="section">🛍️ 伴手禮筆記</h2>
-    <div class="block"><ul class="clean" id="omiyage"></ul></div>
+  </section>
+
+  <section class="page" id="p-tips">
+    <h2 class="section">💡 在地攻略・心得</h2>
+    <p style="font-size:11.5px;color:var(--muted);margin:0 2px 12px">你的實戰筆記，旅途隨時查 🌊</p>
+    <div id="notes"></div>
+  </section>
+
+  <section class="page" id="p-note">
+    <h2 class="section">📝 我的筆記</h2>
+    <div class="notebox"><label>🗒️ 旅遊備忘錄（自動儲存於本機）</label>
+      <textarea class="note" data-note="memo" style="min-height:170px" placeholder="想買的伴手禮清單、餐廳候補、提醒事項、停車格號…"></textarea>
+      <div class="saved" data-saved="memo"></div>
+    </div>
+    <div class="block">
+      <h4>💾 備份 / 還原</h4>
+      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">筆記存在「這支手機的瀏覽器」裡，換裝置或清快取會不見。可隨時匯出備份，或貼到 LINE 給家人。</p>
+      <button class="btn" onclick="exportNotes()">📤 匯出全部筆記</button>
+      <button class="btn ghost" onclick="clearNotes()">🗑️ 清除全部</button>
+      <textarea class="note" id="exportBox" style="min-height:100px;margin-top:10px" placeholder="按「匯出」會把所有筆記整理到這裡，長按全選即可複製…"></textarea>
+    </div>
   </section>
 
   <div class="foot">本行程依「8個月嬰兒＋7歲小孩」家庭優化 🌴<br>不貪多景點・北部不換飯店</div>
 </main>
 
 <nav id="nav">
-  <button data-tab="p-days" class="active"><span class="ic">📅</span>每日行程</button>
-  <button data-tab="p-map"><span class="ic">🗺️</span>路線圖</button>
+  <button data-tab="p-days" class="active"><span class="ic">📅</span>行程</button>
+  <button data-tab="p-map"><span class="ic">🗺️</span>地圖</button>
   <button data-tab="p-trans"><span class="ic">✈️</span>交通</button>
   <button data-tab="p-hotel"><span class="ic">🏨</span>住宿</button>
   <button data-tab="p-pack"><span class="ic">🧳</span>行李</button>
   <button data-tab="p-budget"><span class="ic">💰</span>預算</button>
+  <button data-tab="p-tips"><span class="ic">💡</span>攻略</button>
+  <button data-tab="p-note"><span class="ic">📝</span>筆記</button>
 </nav>
 
 <script>
-/* ---------- DATA ---------- */
-const M = u => u; // map url passthrough
 const days = [
   { d:"Day 1", date:"7/2", wk:"四", title:"抵達・美國村", est:"約 ¥8,500", route:null, items:[
     {t:"06:30",a:"台灣全鋒接送 → 桃機T2",det:["🚐 接送","已訂"]},
     {t:"10:05",a:"NU302 起飛 ✈️",det:["已訂"]},
     {t:"12:45",a:"抵達那霸機場（T1）",det:[]},
-    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["還車/取車地點","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長"]]},
-    {t:"15:00",a:"午餐：極味屋 PARCO CITY 2F",det:["🚗 機場→PARCO 約20分","¥4,000"],map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9"]]},
+    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車/還車地點","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長"]]},
+    {t:"15:00",a:"午餐：極味屋 PARCO CITY 2F",det:["🚗 機場→PARCO 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜(ルル感冒藥/眼藥水)；超市香檬調味料超多；吉伊卡哇餐廳現場看時段候位",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9"]]},
     {t:"16:00",a:"PARCO CITY 逛街",det:["1F藥妝便宜・嬰兒用品補貨"]},
-    {t:"17:00",a:"美國村：林檎堂蘋果派・Hoppen",det:["🚗 約20分","¥1,000"],map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8"],["Hoppen","https://maps.app.goo.gl/GJaWmsK61HGbL14n9"]]},
+    {t:"17:00",a:"美國村：林檎堂蘋果派・Hoppen",det:["🚗 約20分","¥1,000"],tip:"麵包超人控必看！附近一間2.8星扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8"],["Hoppen","https://maps.app.goo.gl/GJaWmsK61HGbL14n9"]]},
     {t:"18:00",a:"入住 Vessel Campana",det:["🚗 5分","已訂"],map:[["Vessel Campana","https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6"]]},
     {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行/3分","¥3,500","小孩可玩遊樂場"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9"]]},
     {t:"20:30",a:"飯店泡湯（Terme Villa ちゅらーゆ）",det:["含房"]},
@@ -280,7 +296,7 @@ const days = [
   { d:"Day 3", date:"7/4", wk:"六", title:"古宇利玻璃船・萬座毛", est:"約 ¥21,400",
     route:"🗺️ 一路北上不繞路：北谷 → 古宇利 → 名護補貨 → 萬座毛 → BEB5瀨良垣", items:[
     {t:"09:00",a:"退房・從北谷出發北上",det:["🚗 沖繩道","過路費約¥1,000"]},
-    {t:"10:30",a:"古宇利島 玻璃船（看珊瑚熱帶魚）",det:["🚗 約80分","大人¥3,000・兒童¥1,500"],map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6"]]},
+    {t:"10:30",a:"古宇利島 玻璃船（看珊瑚熱帶魚）",det:["🚗 約80分","大人¥3,000・兒童¥1,500"],tip:"海洋塔香檸汁/黑糖餅乾可買；蝦蝦飯可吃但不用點牛肉版；今歸仁黑糖拿鐵沒時間可略過",map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6"]]},
     {t:"12:00",a:"午餐：Poke Bowls / 琉球銘菓",det:["步行","¥3,500"],map:[["Poke Bowls","https://maps.app.goo.gl/ymNNktqFZMBWehtd6"]]},
     {t:"14:00",a:"名護超市補貨（最便宜）",det:["🚗 約30分","¥3,000"],map:[["Town Plaza Kanehide","https://maps.app.goo.gl/3zcQzwG1MDbRHbEv7"],["MaxValu Nago","https://maps.app.goo.gl/dq8aZ1fjBj83Wq65A"]]},
     {t:"15:30",a:"萬座毛（絕景海崖）+ 2樓優格",det:["🚗 約30分","¥100＋優格¥800"],map:[["萬座毛","https://maps.app.goo.gl/hBGHvrEpenAV5Ndb6"],["2樓優格","https://maps.app.goo.gl/DWEUg4K4DFqTCCZYA"]]},
@@ -289,7 +305,7 @@ const days = [
   ]},
   { d:"Day 4", date:"7/5", wk:"日", title:"名護鳳梨園・名護動物園", est:"約 ¥18,400", route:null, items:[
     {t:"10:00",a:"早餐：潛水員牛排（Diver's Steak）",det:["🚗 BEB5→名護 約30分","¥4,000"],map:[["潛水員牛排","https://maps.app.goo.gl/FRqXRjScoUZZsB6g8"]]},
-    {t:"11:30",a:"名護鳳梨園（電動車・植物園）",det:["🚗 約20分","大人¥1,500・兒童¥800・4歲下免費"],map:[["名護鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A"]]},
+    {t:"11:30",a:"名護鳳梨園（電動車・植物園）",det:["🚗 約20分","大人¥1,500・兒童¥800・4歲下免費"],tip:"鳳梨蛋糕機場也買得到，不用在這裡太早買",map:[["名護鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A"]]},
     {t:"14:00",a:"午餐（園內/周邊）",det:["¥3,000"]},
     {t:"15:00",a:"名護動物園 ネオパーク（餵動物・小火車）",det:["🚗 約10分","大人¥1,600・小人¥800","JAF折¥100/50"],map:[["ネオパーク","https://maps.app.goo.gl/zLWotzpk2nj73nMs6"]]},
     {t:"17:30",a:"返回 BEB5・休息",det:["🚗 約30分"]},
@@ -297,7 +313,7 @@ const days = [
   ]},
   { d:"Day 5", date:"7/6", wk:"一", title:"美麗海水族館", est:"約 ¥14,000", route:null, items:[
     {t:"08:00",a:"早餐・退房準備（仍住BEB5）",det:[]},
-    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180・小學¥710・6歲下免費"],note:"⚠️ 停車停 P7！",map:[["美麗海水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館"]]},
+    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180・小學¥710・6歲下免費"],note:"⚠️ 停車停 P7！",tip:"沒要看鯨鯊其實可不買門票，入口左轉外面海牛/海豚/海龜餵食體驗免費",map:[["美麗海水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館"]]},
     {t:"11:30",a:"¥1,000 專屬50分鐘用餐區",det:["館內","¥1,000×人數"],note:"本趟最推！貼玻璃看海洋生物"},
     {t:"13:00",a:"免費區：海牛餵食秀・海豚/海龜餵食體驗",det:["步行","免門票"],note:"入口左轉就是，不用買票"},
     {t:"15:00",a:"古宇利海洋塔 or 回程休息",det:["🚗","香檸汁・黑糖餅乾可買"]},
@@ -305,13 +321,22 @@ const days = [
   ]},
   { d:"Day 6", date:"7/7", wk:"二", title:"國際通・好市多・回程", est:"約 ¥21,000", route:null, items:[
     {t:"10:00",a:"退房（11:00前）",det:[]},
-    {t:"11:30",a:"國際通 → 市場本通",det:["🚗 約70分","午餐+伴手禮 ¥10,000"],note:"牧志市場買蝦餅、福助玉子燒飯糰、JEF苦瓜漢堡",map:[["國際通","https://maps.app.goo.gl/aKiBBtq5R4Q3zRki8"],["牧志公設市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場"]]},
+    {t:"11:30",a:"國際通 → 市場本通",det:["🚗 約70分","午餐+伴手禮 ¥10,000"],note:"牧志市場買蝦餅、福助玉子燒飯糰、JEF苦瓜漢堡",tip:"蝦餅這裡最便宜(多比幾家)；香檬調味料到「夕凪」滿¥5,500退稅；福砂屋在琉貿百貨1F可退稅",map:[["國際通","https://maps.app.goo.gl/aKiBBtq5R4Q3zRki8"],["牧志公設市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場"]]},
     {t:"14:30",a:"好市多 南風原店 補貨",det:["🚗 約25分","¥8,000"],map:[["Costco 南風原","https://www.google.com/maps/search/?api=1&query=コストコ南風原倉庫店"]]},
     {t:"17:30",a:"加滿油・前往 Budget 還車",det:["🚗 約20分","油費"]},
     {t:"18:30",a:"Budget 那霸機場店還車",det:["接駁→機場"]},
-    {t:"19:00",a:"先吃飽再入關！",det:["¥3,000"],note:"管制區內沒便利商店！國內線2樓買シークヮーサー調味料、福砂屋"},
+    {t:"19:00",a:"先吃飽再入關！",det:["¥3,000"],note:"管制區內沒便利商店！國內線2樓買シークヮーサー調味料、福砂屋",tip:"塩屋法蘭酥登機門前有貨且較便宜(易售完)；吉伊卡哇Orion聯名衣¥4,950均一價",map:[]},
     {t:"20:55",a:"CI123 起飛 → 21:30 桃機T2",det:["✈️","肯驛接送","已訂"]},
   ]},
+];
+
+const mapLegend = [
+  ["#2f7fd6","D1 機場→PARCO→北谷"],
+  ["#16a07a","D2 北谷→兒童王國→Rycom"],
+  ["#dd5a30","D3 北谷→古宇利→名護→瀨良垣"],
+  ["#ef9f27","D4 瀨良垣⇄名護（鳳梨園·動物園）"],
+  ["#d4537e","D5 瀨良垣⇄本部 美麗海"],
+  ["#7f77dd","D6 瀨良垣→國際通→好市多→機場"],
 ];
 
 const hotels = [
@@ -321,7 +346,7 @@ const hotels = [
 ];
 
 const packing = [
-  {h:"📄 證件/金錢",items:["護照","機票/訂房憑證","租車憑證","駕照日文譯本＋台灣駕照（缺一不可！）","信用卡（玉山/新光/華航/JCB）","日幣現金"]},
+  {h:"📄 證件/金錢/通訊",items:["護照","機票/訂房憑證","租車憑證","駕照日文譯本＋台灣駕照（缺一不可！）","信用卡（玉山/新光/華航/JCB）","日幣現金","旅平險/醫療險保單","eSIM/SIM 卡（出發前先設定）"]},
   {h:"👶 嬰兒（8個月）",items:["尿布","濕紙巾","副食品/奶粉","奶瓶","揹巾","輕便推車","防曬","口水巾","常用藥"]},
   {h:"🧒 小孩（7歲）",items:["替換衣物","泳衣","防曬","帽子","玩沙工具","暈車藥","零食","平板/玩具"]},
   {h:"🎒 共同",items:["薄外套（冷氣強）","雨具","保溫瓶","行動電源","轉接頭（日本A型）","藥品（腸胃/感冒/退燒/OK繃）","泳具"]},
@@ -342,40 +367,57 @@ const budgetTotals = [
 ];
 
 const tips = [
-  ["📶 網路","建議租 WiFi 機或買 eSIM（多裝置選 WiFi 機划算）"],
+  ["📶 網路","建議買 eSIM／SIM 卡（多裝置可改租 WiFi 機）；出發前先設定，落地即可導航"],
+  ["🛡️ 保險","務必投保旅平＋醫療＋不便險；租車現場可加保當地任意險/免責（本次已含免責＋NOC）"],
   ["💴 換匯","台灣先換部分日幣；多處可刷卡，市場/小店備現金"],
-  ["🛡️ 保險","投保旅平險＋不便險；租車已含免責＋NOC補償"],
   ["🚗 駕車","靠左行駛・走人工收費道・美麗海停 P7"],
   ["🧾 退稅","同店含稅滿 ¥5,500 可退（夕凪、琉貿福砂屋皆可）"],
 ];
-const omiyage = [
-  "シークヮーサー調味料：機場國內線2樓、PARCO CITY超市、牧志市場「夕凪」",
-  "蝦餅：牧志市場/市場本通最便宜（先別在景點買）",
-  "塩屋法蘭酥：登機門前有貨且較便宜（易售完）",
-  "福砂屋：機場只有黑糖；琉貿百貨1樓有黑糖+原味（可退稅）",
-  "吉伊卡哇 Orion聯名衣：¥4,950均一價，到處同價",
-  "古宇利：香檸汁可買、鳳梨蛋糕機場也有不用早買",
-  "美麗海：沒看鯨鯊可不買票，外面海牛/海豚/海龜免費",
+
+const notes = [
+  {h:"🛍️ 伴手禮・哪裡買划算",items:[
+    "シークヮーサー（香檬）調味料：到處找不到！①機場國內線2樓 ②牧志市場本通「夕凪」(滿¥5,500可退稅) ③PARCO CITY超市(超多)",
+    "福砂屋：機場只有黑糖(小櫃2-33)；琉貿百貨1樓有黑糖+原味(可退稅)",
+    "吉伊卡哇×Orion聯名衣：¥4,950均一價，沒有更便宜的",
+    "蝦餅：牧志市場/市場本通最便宜，別在景點買",
+    "塩屋法蘭酥：易售完，登機門前有貨且較便宜(小盒¥1,019)；鹽屋多處沒免稅→Donki買有折價券",
+    "古宇利海洋塔：香檸汁、黑糖餅乾可買；鳳梨蛋糕機場也有不用早買",
+    "北海道 FERME LA TERRE 美瑛雙層奶油夾心餅超好吃→MUJI TO GO 那側",
+    "入關前先吃飽！管制區內東西少又沒便利商店",
+  ]},
+  {h:"🍽️ 美食・餐廳",items:[
+    "市場本通路線：導航「JEF苦瓜漢堡」(炸雞趁熱吃)、便宜蝦餅回程買；福助玉子燒飯糰也在這條，沖繩飯糰好吃可多點",
+    "百年大家(阿古豬)：庭院大、造景美、有神社，要多留時間；食物一般",
+    "古宇利蝦蝦飯：可吃，不用點牛肉版",
+    "今歸仁村黑糖拿鐵：多是台灣人排，不用等太久，沒時間可略過",
+    "浜辺の茶屋：窗景超美但位子少要碰運氣，餐點中規中矩",
+    "瀨長島：咖哩麵包可吃、POSILLIPO義式餐廳金槍魚必點",
+    "PARCO CITY 吉伊卡哇餐廳：現場看時段候位",
+    "7-11 鮮奶茶機：很普通，不用特別找",
+  ]},
+  {h:"🐠 景點・體驗",items:[
+    "美麗海：花¥1,000有專屬50分鐘用餐區，貼玻璃看海洋生物不用人擠人——最值得！沒看鯨鯊可不買票，入口左轉外面海牛/海豚/海龜餵食體驗免費",
+    "麵包超人控：美國村附近2.8星扭蛋店有麵包超人磁鐵機",
+    "西來院達摩寺：Funpass一點換達摩口金包，記得先兌換再依背面說明參拜",
+    "Churasun 6：表演精彩、道具用心，老少咸宜",
+    "PARCO CITY 1樓藥妝便宜：ルル感冒藥90顆比堂吉訶德便宜¥1,000、眼藥水差一半",
+    "瀨長島住宿(未來參考)：中午抵達可直排瀨長島，Storyline房大、有戶外泳池+溫泉池、免費酒水",
+  ]},
+  {h:"🚗 自駕筆記",items:[
+    "美麗海停車場停 P7",
+    "鹽屋多處有賣但常沒免稅→Donki 買有折價券",
+  ]},
 ];
 
-/* ---------- RENDER ---------- */
 function isPaid(s){return s==="已訂"||s==="已付"}
-function detHtml(det){
-  return det.map(d=>{
-    if(isPaid(d))return `<span class="badge-paid">✅ ${d}</span>`;
-    return `<span>${d}</span>`;
-  }).join("");
-}
+function detHtml(det){return det.map(d=>isPaid(d)?`<span class="badge-paid">✅ ${d}</span>`:`<span>${d}</span>`).join("");}
 function buildDays(){
-  const tabs=document.getElementById("daytabs");
-  const bodies=document.getElementById("daybodies");
+  const tabs=document.getElementById("daytabs"),bodies=document.getElementById("daybodies");
   days.forEach((day,i)=>{
     const tab=document.createElement("div");
     tab.className="daytab"+(i===0?" active":"");
-    tab.innerHTML=`<b>${day.date}</b><small>${day.d.replace('Day ','D')}・${day.wk}</small>`;
-    tab.onclick=()=>selDay(i);
-    tabs.appendChild(tab);
-
+    tab.innerHTML=`<b>${day.date}</b><small>D${i+1}・${day.wk}</small>`;
+    tab.onclick=()=>selDay(i);tabs.appendChild(tab);
     const body=document.createElement("div");
     body.className="daybody"+(i===0?" active":"");
     let html=`<div class="dayhead"><h3>${day.d}｜${day.date}（${day.wk}）${day.title}</h3><div class="est">💰 預估 ${day.est}</div></div>`;
@@ -386,11 +428,12 @@ function buildDays(){
       if(it.det&&it.det.length)html+=`<div class="det">${detHtml(it.det)}</div>`;
       if(it.map)html+=it.map.map((m,idx)=>`<a class="mapbtn${idx>0?' alt':''}" target="_blank" rel="noopener" href="${m[1]}">📍 ${m[0]}</a>`).join("");
       if(it.note)html+=`<div class="note-line">💡 ${it.note}</div>`;
+      if(it.tip)html+=`<div class="tip-line">📝 攻略：${it.tip}</div>`;
       html+=`</div></div>`;
     });
     html+=`</div>`;
-    body.innerHTML=html;
-    bodies.appendChild(body);
+    html+=`<div class="notebox"><label>✏️ Day${i+1} 今日筆記（自動儲存）</label><textarea class="note" data-note="day${i+1}" placeholder="記錄想吃的、想買的、臨時調整、實際花費…"></textarea><div class="saved" data-saved="day${i+1}"></div></div>`;
+    body.innerHTML=html;bodies.appendChild(body);
   });
 }
 function selDay(i){
@@ -400,8 +443,7 @@ function selDay(i){
 }
 function buildHotels(){
   document.getElementById("hotels").innerHTML=hotels.map(h=>`
-    <div class="block hotel">
-      <h4>🏨 ${h.n}</h4>
+    <div class="block hotel"><h4>🏨 ${h.n}</h4>
       <div class="kv"><b>入住</b><span>${h.night}</span></div>
       <div class="kv"><b>地址</b><span>${h.addr}</span></div>
       <span class="pill">${h.tag}</span><br>
@@ -413,14 +455,10 @@ function buildPacking(){
     <div class="block"><h4>${g.h}</h4>
       <ul class="clean check">${g.items.map((it,ii)=>`<li data-key="p${gi}_${ii}">${it}</li>`).join("")}</ul>
     </div>`).join("");
-  // restore + bind
   document.querySelectorAll(".check li").forEach(li=>{
     const key=li.dataset.key;
     if(localStorage.getItem("oki_"+key)==="1")li.classList.add("on");
-    li.onclick=()=>{
-      li.classList.toggle("on");
-      localStorage.setItem("oki_"+key, li.classList.contains("on")?"1":"0");
-    };
+    li.onclick=()=>{li.classList.toggle("on");localStorage.setItem("oki_"+key,li.classList.contains("on")?"1":"0");};
   });
 }
 function buildBudget(){
@@ -428,10 +466,47 @@ function buildBudget(){
   h+=budgetTotals.map(b=>`<div class="budget-row total"><span>${b.k}<small style="font-weight:400">${b.n}</small></span><span class="yen">${b.v}</span></div>`).join("");
   document.getElementById("budget").innerHTML=h;
   document.getElementById("tips").innerHTML=tips.map(t=>`<div class="kv"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("");
-  document.getElementById("omiyage").innerHTML=omiyage.map(o=>`<li>${o}</li>`).join("");
+}
+function buildNotes(){
+  document.getElementById("notes").innerHTML=notes.map(g=>`
+    <div class="block"><h4>${g.h}</h4>
+      <ul class="clean">${g.items.map(it=>`<li>${it}</li>`).join("")}</ul>
+    </div>`).join("");
+}
+function buildLegend(){
+  document.getElementById("maplegend").innerHTML=mapLegend.map(l=>
+    `<div style="display:flex;align-items:center;gap:10px;font-size:12px;padding:5px 0">
+      <span style="flex:0 0 22px;height:5px;border-radius:3px;background:${l[0]}"></span>
+      <span>${l[1]}</span></div>`).join("");
 }
 
-/* ---------- NAV ---------- */
+let vb={x:0,y:0,w:380,h:540};
+function applyVB(){const s=document.getElementById("routeMap");if(s)s.setAttribute("viewBox",`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);}
+function zoomMap(f){
+  const cx=vb.x+vb.w/2,cy=vb.y+vb.h/2;
+  let nw=vb.w/f; nw=Math.max(150,Math.min(380,nw));
+  vb.w=nw; vb.h=nw*(540/380); vb.x=cx-vb.w/2; vb.y=cy-vb.h/2; clampVB(); applyVB();
+}
+function resetMap(){vb={x:0,y:0,w:380,h:540};applyVB();}
+function clampVB(){
+  if(vb.x<-60)vb.x=-60; if(vb.y<-60)vb.y=-60;
+  if(vb.x+vb.w>440)vb.x=440-vb.w; if(vb.y+vb.h>600)vb.y=600-vb.h;
+}
+function initMapDrag(){
+  const s=document.getElementById("routeMap");if(!s)return;
+  let drag=false,px,py;
+  s.addEventListener("pointerdown",e=>{drag=true;px=e.clientX;py=e.clientY;s.setPointerCapture(e.pointerId);});
+  s.addEventListener("pointermove",e=>{
+    if(!drag)return;
+    const r=s.getBoundingClientRect();
+    vb.x-=(e.clientX-px)*vb.w/r.width;
+    vb.y-=(e.clientY-py)*vb.h/r.height;
+    px=e.clientX;py=e.clientY;clampVB();applyVB();
+  });
+  s.addEventListener("pointerup",()=>drag=false);
+  s.addEventListener("pointercancel",()=>drag=false);
+}
+
 document.querySelectorAll("#nav button").forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));
@@ -442,7 +517,37 @@ document.querySelectorAll("#nav button").forEach(b=>{
   };
 });
 
-buildDays();buildHotels();buildPacking();buildBudget();
+function wireNotes(){
+  document.querySelectorAll("textarea.note[data-note]").forEach(ta=>{
+    const key="okinote_"+ta.dataset.note;
+    ta.value=localStorage.getItem(key)||"";
+    let tmr;
+    ta.addEventListener("input",()=>{
+      localStorage.setItem(key,ta.value);
+      const s=document.querySelector(`[data-saved="${ta.dataset.note}"]`);
+      if(s){s.textContent="✓ 已自動儲存";clearTimeout(tmr);tmr=setTimeout(()=>s.textContent="",1500);}
+    });
+  });
+}
+function exportNotes(){
+  let out="🌺 沖繩行程筆記備份 ｜ "+new Date().toLocaleString()+"\n\n";
+  const labels={memo:"📝 備忘錄",day1:"Day1 (7/2)",day2:"Day2 (7/3)",day3:"Day3 (7/4)",day4:"Day4 (7/5)",day5:"Day5 (7/6)",day6:"Day6 (7/7)"};
+  let any=false;
+  Object.keys(labels).forEach(k=>{
+    const v=localStorage.getItem("okinote_"+k);
+    if(v&&v.trim()){out+="【"+labels[k]+"】\n"+v.trim()+"\n\n";any=true;}
+  });
+  if(!any)out+="(目前沒有任何筆記)";
+  const box=document.getElementById("exportBox");box.value=out;box.focus();box.select();
+}
+function clearNotes(){
+  if(!confirm("確定清除所有筆記？此動作無法復原。"))return;
+  ["memo","day1","day2","day3","day4","day5","day6"].forEach(k=>localStorage.removeItem("okinote_"+k));
+  document.querySelectorAll("textarea.note[data-note]").forEach(ta=>ta.value="");
+  const eb=document.getElementById("exportBox");if(eb)eb.value="";
+}
+
+buildDays();buildHotels();buildPacking();buildBudget();buildNotes();buildLegend();initMapDrag();wireNotes();
 </script>
 </body>
 </html>
