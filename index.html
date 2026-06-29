@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0a8ea0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="沖繩親子遊">
+<link rel="apple-touch-icon" href="https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/local_florist/default/192px.svg">
 <title>沖繩親子 6天5夜 🌺</title>
 <style>
   :root{
@@ -34,7 +38,7 @@
   .page.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   h2.section{font-size:16px;margin:4px 2px 12px;display:flex;align-items:center;gap:7px;color:var(--sea-d)}
-  .daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
+  .daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;-ms-overflow-style:none;}
   .daytabs::-webkit-scrollbar{display:none}
   .daytab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:14px;
     padding:8px 13px;text-align:center;font-size:12px;min-width:62px;cursor:pointer;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
@@ -59,7 +63,9 @@
   .det{display:flex;flex-wrap:wrap;gap:5px 10px;font-size:11.5px;color:var(--muted);margin-bottom:8px}
   .det span{display:inline-flex;align-items:center;gap:3px}
   .badge-paid{color:var(--green);font-weight:600}
-  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:11px;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:2px 6px 2px 0}
+  .mapcode-badge{font-size:10.5px;color:var(--sea-d);background:#e7f7fa;padding:2px 7px;border-radius:6px;border:1px solid var(--sky);font-family:monospace;}
+  .mapbtn-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0}
+  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:10px;box-shadow:0 3px 9px rgba(10,142,160,.3)}
   .mapbtn:active{transform:scale(.96)}
   .mapbtn.alt{background:linear-gradient(135deg,#ffb27a,var(--coral))}
   .note-line{font-size:11.5px;color:#b5532e;background:#fff7ed;border-radius:9px;padding:6px 9px;margin-top:6px}
@@ -97,6 +103,16 @@
   .btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;border:none;font-size:13px;font-weight:600;padding:10px 15px;border-radius:12px;cursor:pointer;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:4px 6px 4px 0}
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:#fff;color:var(--sea-d);border:1.5px solid var(--line);box-shadow:none}
+  input.linkin{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;color:var(--ink);background:#fbfdfd;margin-bottom:8px}
+  input.linkin:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
+  .msg{background:#f3fbfc;border:1px solid var(--line);border-radius:12px;padding:8px 11px;margin-bottom:8px}
+  .msgh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+  .msgh b{font-size:12.5px;color:var(--sea-d)}
+  .msgh span{font-size:10.5px;color:var(--muted)}
+  .msg div:last-child{font-size:13px;color:var(--ink);white-space:pre-wrap;word-break:break-word}
+  .boardstat{font-size:11.5px;color:var(--muted);padding:8px 2px}
+  details.apicfg{margin-top:8px}
+  details.apicfg summary{font-size:12px;color:var(--sea-d);cursor:pointer}
   nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;box-shadow:0 -2px 14px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
   nav button{flex:1;background:none;border:0;padding:8px 1px 7px;font-size:10px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s}
   nav button .ic{font-size:18px;line-height:1}
@@ -188,7 +204,7 @@
         </g>
       </svg>
     </div>
-    <div class="maphint">💡 用右上 ＋／－ 放大縮小，按住可拖曳移動 ｜ ⟳ 回復原狀</div>
+    <div class="maphint">💡 雙指可縮放地圖，按住可拖曳移動 ｜ ⟳ 回復原狀</div>
     <div class="block" style="margin-top:12px">
       <h4>每日路線（顏色＝天數）</h4>
       <div id="maplegend"></div>
@@ -210,7 +226,10 @@
       <div class="kv"><b>還車</b><span>7/7 18:30｜豐見城市瀨長3-2</span></div>
       <div class="kv"><b>費用</b><span class="yen">¥30,720（已折樂天券・現地付）</span></div>
       <div class="kv"><b>配備</b><span>含兒童座椅 ✓</span></div>
-      <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 還車地點導航</a>
+      <div class="mapbtn-wrap">
+        <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 還車地點導航</a>
+        <span class="mapcode-badge">MC: 33 002 605*15</span>
+      </div>
     </div>
     <div class="block"><h4>🛋️ 機場貴賓室</h4>
       <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span><span class="pill">華航醫師卡</span><span class="pill">JCB</span><span class="pill">小童</span>
@@ -243,13 +262,26 @@
 
   <section class="page" id="p-note">
     <h2 class="section">📝 我的筆記</h2>
-    <div class="notebox"><label>🗒️ 旅遊備忘錄（自動儲存於本機）</label>
-      <textarea class="note" data-note="memo" style="min-height:170px" placeholder="想買的伴手禮清單、餐廳候補、提醒事項、停車格號…"></textarea>
-      <div class="saved" data-saved="memo"></div>
+    <div class="block">
+      <h4>🗨️ 家庭留言板（即時共享）</h4>
+      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">家人各自留言、即時顯示，不會互相覆蓋。</p>
+      <input id="boardName" class="linkin" placeholder="你的暱稱">
+      <textarea class="note" id="boardMsg" placeholder="想吃的店、想買的、提醒事項…"></textarea>
+      <button class="btn" id="boardSend" onclick="postBoard()">送出留言</button>
+      <button class="btn ghost" onclick="loadBoard()">🔄 重新整理</button>
+      <div id="boardList" style="margin-top:10px"></div>
+      <details class="apicfg">
+        <summary>⚙️ 設定 API（首次使用）</summary>
+        <div style="margin-top:8px">
+          <input id="boardApi" class="linkin" placeholder="貼上 Apps Script /exec 網址…">
+          <button class="btn ghost" onclick="saveBoardApi()">💾 儲存 API</button>
+          <div class="saved" data-saved="boardapi"></div>
+        </div>
+      </details>
     </div>
     <div class="block">
-      <h4>💾 備份 / 還原</h4>
-      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">筆記存在「這支手機的瀏覽器」裡，換裝置或清快取會不見。可隨時匯出備份，或貼到 LINE 給家人。</p>
+      <h4>💾 備份 / 還原（個人筆記）</h4>
+      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">行程中的每日個人備忘錄存在這支手機裡，換裝置前可匯出備份。</p>
       <button class="btn" onclick="exportNotes()">📤 匯出全部筆記</button>
       <button class="btn ghost" onclick="clearNotes()">🗑️ 清除全部</button>
       <textarea class="note" id="exportBox" style="min-height:100px;margin-top:10px" placeholder="按「匯出」會把所有筆記整理到這裡，長按全選即可複製…"></textarea>
@@ -271,78 +303,69 @@
 </nav>
 
 <script>
+// 陣列加入 Mapcode (第三個參數)
 const days = [
   { d:"Day 1", date:"7/2", wk:"四", title:"抵達・美國村", est:"約 ¥8,500", route:null, items:[
     {t:"06:30",a:"台灣全鋒接送 → 桃機T2",det:["🚐 接送","已訂"]},
     {t:"10:05",a:"NU302 起飛 ✈️",det:["已訂"]},
     {t:"12:45",a:"抵達那霸機場（T1）",det:[]},
-    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車/還車地點","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長"]]},
-    {t:"15:00",a:"午餐：極味屋 PARCO CITY 2F",det:["🚗 機場→PARCO 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜(ルル感冒藥/眼藥水)；超市香檬調味料超多；吉伊卡哇餐廳現場看時段候位",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9"]]},
+    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車地點","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長","33 002 605*15"]]},
+    {t:"15:00",a:"午餐：極味屋 PARCO CITY 2F",det:["🚗 機場→PARCO 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜; 超市香檬調味料多",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9","33 339 031*33"]]},
     {t:"16:00",a:"PARCO CITY 逛街",det:["1F藥妝便宜・嬰兒用品補貨"]},
-    {t:"17:00",a:"美國村：林檎堂蘋果派・Hoppen",det:["🚗 約20分","¥1,000"],tip:"麵包超人控必看！附近一間2.8星扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8"],["Hoppen","https://maps.app.goo.gl/GJaWmsK61HGbL14n9"]]},
-    {t:"18:00",a:"入住 Vessel Campana",det:["🚗 5分","已訂"],map:[["Vessel Campana","https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6"]]},
-    {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行/3分","¥3,500","小孩可玩遊樂場"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9"]]},
+    {t:"17:00",a:"美國村：林檎堂蘋果派・Hoppen",det:["🚗 約20分","¥1,000"],tip:"附近2.8星扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8","33 526 450*63"]]},
+    {t:"18:00",a:"入住 Vessel Campana",det:["🚗 5分","已訂"],map:[["Vessel Campana","https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6","33 525 322*52"]]},
+    {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行/3分","¥3,500"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9","33 526 212*11"]]},
     {t:"20:30",a:"飯店泡湯（Terme Villa ちゅらーゆ）",det:["含房"]},
   ]},
   { d:"Day 2", date:"7/3", wk:"五", title:"沙灘・沖繩兒童王國", est:"約 ¥13,500", route:null, items:[
     {t:"08:00",a:"早餐・美濱海灘踏浪玩沙",det:["含房"]},
     {t:"10:30",a:"退房",det:[]},
-    {t:"12:00",a:"午餐：海族工房（海鮮）",det:["🚗 北谷→沖繩市 約25分","¥4,500"],map:[["海族工房","https://maps.app.goo.gl/R9BLnadQ64qZrqWu5"]]},
-    {t:"13:30",a:"沖繩兒童王國（動物園+遊樂）",det:["🚗 約10分","大人¥500・15歲下免費"],map:[["兒童王國","https://maps.app.goo.gl/KP3msm2YVnQoDzbs5"]]},
-    {t:"16:30",a:"AEON Mall 來客夢 Rycom 補貨",det:["🚗 約20分"],map:[["AEON Rycom","https://maps.app.goo.gl/rotKTKTpjghj2F42A"]]},
-    {t:"18:00",a:"晚餐：琉球的牛（燒肉）",det:["步行","¥8,000","建議先訂位"],map:[["琉球的牛","https://www.google.com/maps/search/?api=1&query=琉球の牛+ライカム"]]},
-    {t:"19:30",a:"入住 雷克沖繩北谷溫泉度假村・泡湯",det:["🚗 Rycom→北谷 約25分","已訂"],map:[["Lequ Chatan","https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort"]]},
+    {t:"12:00",a:"午餐：海族工房（海鮮）",det:["🚗 約25分","¥4,500"],map:[["海族工房","https://maps.app.goo.gl/R9BLnadQ64qZrqWu5","33 530 011*22"]]},
+    {t:"13:30",a:"沖繩兒童王國（動物園+遊樂）",det:["🚗 約10分","大人¥500"],map:[["兒童王國","https://maps.app.goo.gl/KP3msm2YVnQoDzbs5","33 561 798*58"]]},
+    {t:"16:30",a:"AEON Mall 來客夢 Rycom 補貨",det:["🚗 約20分"],map:[["AEON Rycom","https://maps.app.goo.gl/rotKTKTpjghj2F42A","33 530 406*45"]]},
+    {t:"18:00",a:"晚餐：琉球的牛（燒肉）",det:["步行","¥8,000","先訂位"],map:[["琉球的牛","https://www.google.com/maps/search/?api=1&query=琉球の牛+ライカム","33 525 860*22"]]},
+    {t:"19:30",a:"入住 雷克沖繩北谷溫泉度假村",det:["🚗 約25分","已訂"],map:[["Lequ Chatan","https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort","33 525 586*11"]]},
   ]},
-  { d:"Day 3", date:"7/4", wk:"六", title:"古宇利玻璃船・萬座毛", est:"約 ¥21,400",
-    route:"🗺️ 一路北上不繞路：北谷 → 古宇利 → 名護補貨 → 萬座毛 → BEB5瀨良垣", items:[
-    {t:"09:00",a:"退房・從北谷出發北上",det:["🚗 沖繩道","過路費約¥1,000"]},
-    {t:"10:30",a:"古宇利島 玻璃船（看珊瑚熱帶魚）",det:["🚗 約80分","大人¥3,000・兒童¥1,500"],tip:"海洋塔香檸汁/黑糖餅乾可買；蝦蝦飯可吃但不用點牛肉版；今歸仁黑糖拿鐵沒時間可略過",map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6"]]},
-    {t:"12:00",a:"午餐：Poke Bowls / 琉球銘菓",det:["步行","¥3,500"],map:[["Poke Bowls","https://maps.app.goo.gl/ymNNktqFZMBWehtd6"]]},
-    {t:"14:00",a:"名護超市補貨（最便宜）",det:["🚗 約30分","¥3,000"],map:[["Town Plaza Kanehide","https://maps.app.goo.gl/3zcQzwG1MDbRHbEv7"],["MaxValu Nago","https://maps.app.goo.gl/dq8aZ1fjBj83Wq65A"]]},
-    {t:"15:30",a:"萬座毛（絕景海崖）+ 2樓優格",det:["🚗 約30分","¥100＋優格¥800"],map:[["萬座毛","https://maps.app.goo.gl/hBGHvrEpenAV5Ndb6"],["2樓優格","https://maps.app.goo.gl/DWEUg4K4DFqTCCZYA"]]},
-    {t:"17:00",a:"入住 BEB5 瀨良垣",det:["🚗 約10分","已訂"],map:[["BEB5 瀨良垣","https://maps.app.goo.gl/13mbL9xwk1pMAgCL8"]]},
-    {t:"18:30",a:"晚餐：居酒屋",det:["🚗 近","¥7,000"],map:[["居酒屋","https://maps.app.goo.gl/HRhRpVYjMj2z5MXg9"]]},
+  { d:"Day 3", date:"7/4", wk:"六", title:"古宇利玻璃船・萬座毛", est:"約 ¥21,400", route:"🗺️ 一路北上：北谷 → 古宇利 → 名護 → 萬座毛 → 瀨良垣", items:[
+    {t:"09:00",a:"退房・出發北上",det:["🚗 沖繩道"]},
+    {t:"10:30",a:"古宇利島 玻璃船",det:["🚗 約80分","大人¥3,000"],map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6","206 312 039*17"]]},
+    {t:"12:00",a:"午餐：Poke Bowls",det:["步行","¥3,500"],map:[["Poke Bowls","https://maps.app.goo.gl/ymNNktqFZMBWehtd6"]]},
+    {t:"14:00",a:"名護超市補貨",det:["🚗 約30分","¥3,000"],map:[["MaxValu Nago","https://maps.app.goo.gl/dq8aZ1fjBj83Wq65A","206 688 674*44"]]},
+    {t:"15:30",a:"萬座毛（絕景海崖）",det:["🚗 約30分","¥100"],map:[["萬座毛","https://maps.app.goo.gl/hBGHvrEpenAV5Ndb6","206 312 039*17"]]},
+    {t:"17:00",a:"入住 BEB5 瀨良垣",det:["🚗 約10分","已訂"],map:[["BEB5 瀨良垣","https://maps.app.goo.gl/13mbL9xwk1pMAgCL8","206 314 246*00"]]},
   ]},
   { d:"Day 4", date:"7/5", wk:"日", title:"名護鳳梨園・名護動物園", est:"約 ¥18,400", route:null, items:[
-    {t:"10:00",a:"早餐：潛水員牛排（Diver's Steak）",det:["🚗 BEB5→名護 約30分","¥4,000"],map:[["潛水員牛排","https://maps.app.goo.gl/FRqXRjScoUZZsB6g8"]]},
-    {t:"11:30",a:"名護鳳梨園（電動車・植物園）",det:["🚗 約20分","大人¥1,500・兒童¥800・4歲下免費"],tip:"鳳梨蛋糕機場也買得到，不用在這裡太早買",map:[["名護鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A"]]},
-    {t:"14:00",a:"午餐（園內/周邊）",det:["¥3,000"]},
-    {t:"15:00",a:"名護動物園 ネオパーク（餵動物・小火車）",det:["🚗 約10分","大人¥1,600・小人¥800","JAF折¥100/50"],map:[["ネオパーク","https://maps.app.goo.gl/zLWotzpk2nj73nMs6"]]},
+    {t:"10:00",a:"早餐：潛水員牛排",det:["🚗 約30分","¥4,000"],map:[["潛水員牛排","https://maps.app.goo.gl/FRqXRjScoUZZsB6g8"]]},
+    {t:"11:30",a:"名護鳳梨園",det:["🚗 約20分","大人¥1,500"],map:[["名護鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A","206 716 467*85"]]},
+    {t:"15:00",a:"名護動物園 ネオパーク",det:["🚗 約10分","大人¥1,600"],map:[["ネオパーク","https://maps.app.goo.gl/zLWotzpk2nj73nMs6","206 689 727*11"]]},
     {t:"17:30",a:"返回 BEB5・休息",det:["🚗 約30分"]},
-    {t:"18:30",a:"晚餐（飯店/超市食材）",det:["¥4,000"]},
   ]},
   { d:"Day 5", date:"7/6", wk:"一", title:"美麗海水族館", est:"約 ¥14,000", route:null, items:[
-    {t:"08:00",a:"早餐・退房準備（仍住BEB5）",det:[]},
-    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180・小學¥710・6歲下免費"],note:"⚠️ 停車停 P7！",tip:"沒要看鯨鯊其實可不買門票，入口左轉外面海牛/海豚/海龜餵食體驗免費",map:[["美麗海水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館"]]},
-    {t:"11:30",a:"¥1,000 專屬50分鐘用餐區",det:["館內","¥1,000×人數"],note:"本趟最推！貼玻璃看海洋生物"},
-    {t:"13:00",a:"免費區：海牛餵食秀・海豚/海龜餵食體驗",det:["步行","免門票"],note:"入口左轉就是，不用買票"},
-    {t:"15:00",a:"古宇利海洋塔 or 回程休息",det:["🚗","香檸汁・黑糖餅乾可買"]},
-    {t:"17:30",a:"返回 BEB5・晚餐",det:["🚗","¥5,000"]},
+    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180"],note:"⚠️ 停車停 P7！",map:[["美麗海水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館","553 075 797*77"]]},
+    {t:"11:30",a:"¥1,000 專屬50分鐘用餐區",det:["館內","¥1,000×人數"]},
+    {t:"13:00",a:"免費區：海牛/海豚/海龜餵食",det:["步行","免門票"]},
+    {t:"17:30",a:"返回 BEB5・晚餐",det:["🚗"]},
   ]},
   { d:"Day 6", date:"7/7", wk:"二", title:"國際通・好市多・回程", est:"約 ¥21,000", route:null, items:[
     {t:"10:00",a:"退房（11:00前）",det:[]},
-    {t:"11:30",a:"國際通 → 市場本通",det:["🚗 約70分","午餐+伴手禮 ¥10,000"],note:"牧志市場買蝦餅、福助玉子燒飯糰、JEF苦瓜漢堡",tip:"蝦餅這裡最便宜(多比幾家)；香檬調味料到「夕凪」滿¥5,500退稅；福砂屋在琉貿百貨1F可退稅",map:[["國際通","https://maps.app.goo.gl/aKiBBtq5R4Q3zRki8"],["牧志公設市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場"]]},
-    {t:"14:30",a:"好市多 南風原店 補貨",det:["🚗 約25分","¥8,000"],map:[["Costco 南風原","https://www.google.com/maps/search/?api=1&query=コストコ南風原倉庫店"]]},
+    {t:"11:30",a:"國際通 → 牧志市場",det:["🚗 約70分","午餐+買物 ¥10,000"],map:[["牧志公設市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場","33 157 264*62"]]},
+    {t:"14:30",a:"好市多 南風原店 補貨",det:["🚗 約25分","¥8,000"],map:[["Costco 南風原","https://www.google.com/maps/search/?api=1&query=コストコ南風原倉庫店","33 133 084*11"]]},
     {t:"17:30",a:"加滿油・前往 Budget 還車",det:["🚗 約20分","油費"]},
     {t:"18:30",a:"Budget 那霸機場店還車",det:["接駁→機場"]},
-    {t:"19:00",a:"先吃飽再入關！",det:["¥3,000"],note:"管制區內沒便利商店！國內線2樓買シークヮーサー調味料、福砂屋",tip:"塩屋法蘭酥登機門前有貨且較便宜(易售完)；吉伊卡哇Orion聯名衣¥4,950均一價",map:[]},
     {t:"20:55",a:"CI123 起飛 → 21:30 桃機T2",det:["✈️","肯驛接送","已訂"]},
   ]},
 ];
 
 const mapLegend = [
-  ["#2f7fd6","D1 機場→PARCO→北谷"],
-  ["#16a07a","D2 北谷→兒童王國→Rycom"],
-  ["#dd5a30","D3 北谷→古宇利→名護→瀨良垣"],
-  ["#ef9f27","D4 瀨良垣⇄名護（鳳梨園·動物園）"],
-  ["#d4537e","D5 瀨良垣⇄本部 美麗海"],
-  ["#7f77dd","D6 瀨良垣→國際通→好市多→機場"],
+  ["#2f7fd6","D1 機場→PARCO→北谷"], ["#16a07a","D2 北谷→兒童王國→Rycom"],
+  ["#dd5a30","D3 北谷→古宇利→名護→瀨良垣"], ["#ef9f27","D4 瀨良垣⇄名護（鳳梨園·動物園）"],
+  ["#d4537e","D5 瀨良垣⇄本部 美麗海"], ["#7f77dd","D6 瀨良垣→國際通→好市多→機場"],
 ];
 
 const hotels = [
-  {n:"Vessel Hotel Campana Okinawa",night:"7/2（1晚）",addr:"北谷町美濱9番地22",tag:"館內溫泉 ♨️",map:"https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6"},
-  {n:"雷克沖繩北谷溫泉度假村",night:"7/3（1晚）",addr:"北谷町美濱2-34｜Lequ Okinawa Chatan Spa & Resort",tag:"館內溫泉 ♨️",map:"https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort"},
-  {n:"星野 BEB5 沖繩瀨良垣",night:"7/4–7/6（3晚）",addr:"恩納村瀨良垣1860-4",tag:"免費停車93台 🅿️",map:"https://maps.app.goo.gl/13mbL9xwk1pMAgCL8"},
+  {n:"Vessel Hotel Campana",night:"7/2（1晚）",addr:"北谷町美濱9番地22",tag:"館內溫泉 ♨️",map:"https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6", mc:"33 525 322*52"},
+  {n:"雷克沖繩北谷溫泉度假村",night:"7/3（1晚）",addr:"北谷町美濱2-34",tag:"館內溫泉 ♨️",map:"https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort", mc:"33 525 586*11"},
+  {n:"星野 BEB5 沖繩瀨良垣",night:"7/4–7/6（3晚）",addr:"恩納村瀨良垣1860-4",tag:"免費停車 🅿️",map:"https://maps.app.goo.gl/13mbL9xwk1pMAgCL8", mc:"206 314 246*00"},
 ];
 
 const packing = [
@@ -353,64 +376,28 @@ const packing = [
 ];
 
 const budget = [
-  {k:"租車",v:"¥30,720",n:"已付（現地）"},
-  {k:"住宿 5晚",v:"待填",n:"參考 ¥110,000–140,000"},
-  {k:"油費＋高速過路",v:"¥12,000",n:"自駕6天"},
-  {k:"景點門票",v:"¥17,000",n:"兒童王國/玻璃船/鳳梨園/動物園/美麗海"},
-  {k:"餐食 6天",v:"¥55,000",n:"親子家庭 ¥8–10k/天"},
-  {k:"伴手禮/購物",v:"¥40,000",n:"國際通・好市多・AEON"},
+  {k:"租車",v:"¥30,720",n:"已付（現地）"},{k:"住宿 5晚",v:"待填",n:"參考 ¥110,000–140,000"},
+  {k:"油費＋高速過路",v:"¥12,000",n:"自駕6天"},{k:"景點門票",v:"¥17,000",n:"兒童王國/玻璃船/鳳梨園/動物園/美麗海"},
+  {k:"餐食 6天",v:"¥55,000",n:"親子家庭 ¥8–10k/天"},{k:"伴手禮/購物",v:"¥40,000",n:"國際通・好市多・AEON"},
   {k:"雜支",v:"¥8,000",n:"停車/門票零頭/餵食體驗"},
 ];
-const budgetTotals = [
-  {k:"當地小計",v:"約 ¥162,000",n:"不含住宿"},
-  {k:"含住宿總計",v:"約 ¥280,000–310,000",n:"約台幣 6–6.7 萬"},
-];
+const budgetTotals = [{k:"當地小計",v:"約 ¥162,000",n:"不含住宿"},{k:"含住宿總計",v:"約 ¥280,000–310,000",n:"約台幣 6–6.7 萬"}];
 
 const tips = [
-  ["📶 網路","建議買 eSIM／SIM 卡（多裝置可改租 WiFi 機）；出發前先設定，落地即可導航"],
-  ["🛡️ 保險","務必投保旅平＋醫療＋不便險；租車現場可加保當地任意險/免責（本次已含免責＋NOC）"],
-  ["💴 換匯","台灣先換部分日幣；多處可刷卡，市場/小店備現金"],
+  ["📶 網路","建議買 eSIM／SIM 卡；出發前先設定，落地即可導航"],
+  ["🛡️ 保險","務必投保旅平＋醫療＋不便險；租車現場已含免責＋NOC"],
   ["🚗 駕車","靠左行駛・走人工收費道・美麗海停 P7"],
-  ["🧾 退稅","同店含稅滿 ¥5,500 可退（夕凪、琉貿福砂屋皆可）"],
 ];
 
 const notes = [
-  {h:"🛍️ 伴手禮・哪裡買划算",items:[
-    "シークヮーサー（香檬）調味料：到處找不到！①機場國內線2樓 ②牧志市場本通「夕凪」(滿¥5,500可退稅) ③PARCO CITY超市(超多)",
-    "福砂屋：機場只有黑糖(小櫃2-33)；琉貿百貨1樓有黑糖+原味(可退稅)",
-    "吉伊卡哇×Orion聯名衣：¥4,950均一價，沒有更便宜的",
-    "蝦餅：牧志市場/市場本通最便宜，別在景點買",
-    "塩屋法蘭酥：易售完，登機門前有貨且較便宜(小盒¥1,019)；鹽屋多處沒免稅→Donki買有折價券",
-    "古宇利海洋塔：香檸汁、黑糖餅乾可買；鳳梨蛋糕機場也有不用早買",
-    "北海道 FERME LA TERRE 美瑛雙層奶油夾心餅超好吃→MUJI TO GO 那側",
-    "入關前先吃飽！管制區內東西少又沒便利商店",
-  ]},
-  {h:"🍽️ 美食・餐廳",items:[
-    "市場本通路線：導航「JEF苦瓜漢堡」(炸雞趁熱吃)、便宜蝦餅回程買；福助玉子燒飯糰也在這條，沖繩飯糰好吃可多點",
-    "百年大家(阿古豬)：庭院大、造景美、有神社，要多留時間；食物一般",
-    "古宇利蝦蝦飯：可吃，不用點牛肉版",
-    "今歸仁村黑糖拿鐵：多是台灣人排，不用等太久，沒時間可略過",
-    "浜辺の茶屋：窗景超美但位子少要碰運氣，餐點中規中矩",
-    "瀨長島：咖哩麵包可吃、POSILLIPO義式餐廳金槍魚必點",
-    "PARCO CITY 吉伊卡哇餐廳：現場看時段候位",
-    "7-11 鮮奶茶機：很普通，不用特別找",
-  ]},
-  {h:"🐠 景點・體驗",items:[
-    "美麗海：花¥1,000有專屬50分鐘用餐區，貼玻璃看海洋生物不用人擠人——最值得！沒看鯨鯊可不買票，入口左轉外面海牛/海豚/海龜餵食體驗免費",
-    "麵包超人控：美國村附近2.8星扭蛋店有麵包超人磁鐵機",
-    "西來院達摩寺：Funpass一點換達摩口金包，記得先兌換再依背面說明參拜",
-    "Churasun 6：表演精彩、道具用心，老少咸宜",
-    "PARCO CITY 1樓藥妝便宜：ルル感冒藥90顆比堂吉訶德便宜¥1,000、眼藥水差一半",
-    "瀨長島住宿(未來參考)：中午抵達可直排瀨長島，Storyline房大、有戶外泳池+溫泉池、免費酒水",
-  ]},
-  {h:"🚗 自駕筆記",items:[
-    "美麗海停車場停 P7",
-    "鹽屋多處有賣但常沒免稅→Donki 買有折價券",
-  ]},
+  {h:"🛍️ 伴手禮・哪裡買划算",items:["シークヮーサー（香檬）調味料：PARCO超市超多","福砂屋：琉貿百貨1樓有黑糖+原味(可退稅)","蝦餅：牧志市場/市場本通最便宜","入關前先吃飽！管制區內東西少"]},
+  {h:"🍽️ 美食・餐廳",items:["市場本通路線：JEF苦瓜漢堡(炸雞趁熱吃)、福助玉子燒飯糰","古宇利蝦蝦飯：可吃，不用點牛肉版","PARCO CITY 吉伊卡哇餐廳：現場看時段候位"]},
+  {h:"🐠 景點・體驗",items:["美麗海：花¥1,000有專屬50分鐘用餐區，貼玻璃看海洋生物不用人擠人","麵包超人控：美國村附近2.8星扭蛋店有麵包超人磁鐵機"]},
 ];
 
 function isPaid(s){return s==="已訂"||s==="已付"}
 function detHtml(det){return det.map(d=>isPaid(d)?`<span class="badge-paid">✅ ${d}</span>`:`<span>${d}</span>`).join("");}
+
 function buildDays(){
   const tabs=document.getElementById("daytabs"),bodies=document.getElementById("daybodies");
   days.forEach((day,i)=>{
@@ -418,6 +405,7 @@ function buildDays(){
     tab.className="daytab"+(i===0?" active":"");
     tab.innerHTML=`<b>${day.date}</b><small>D${i+1}・${day.wk}</small>`;
     tab.onclick=()=>selDay(i);tabs.appendChild(tab);
+    
     const body=document.createElement("div");
     body.className="daybody"+(i===0?" active":"");
     let html=`<div class="dayhead"><h3>${day.d}｜${day.date}（${day.wk}）${day.title}</h3><div class="est">💰 預估 ${day.est}</div></div>`;
@@ -426,7 +414,14 @@ function buildDays(){
     day.items.forEach(it=>{
       html+=`<div class="item"><div class="card"><span class="time">${it.t}</span><div class="act">${it.a}</div>`;
       if(it.det&&it.det.length)html+=`<div class="det">${detHtml(it.det)}</div>`;
-      if(it.map)html+=it.map.map((m,idx)=>`<a class="mapbtn${idx>0?' alt':''}" target="_blank" rel="noopener" href="${m[1]}">📍 ${m[0]}</a>`).join("");
+      // Mapcode 渲染區塊更新
+      if(it.map){
+        html+=`<div class="mapbtn-wrap">` + it.map.map((m,idx)=>{
+          let btn = `<a class="mapbtn${idx>0?' alt':''}" target="_blank" rel="noopener" href="${m[1]}">📍 ${m[0]}</a>`;
+          if(m[2]) btn += `<span class="mapcode-badge">MC: ${m[2]}</span>`;
+          return btn;
+        }).join("") + `</div>`;
+      }
       if(it.note)html+=`<div class="note-line">💡 ${it.note}</div>`;
       if(it.tip)html+=`<div class="tip-line">📝 攻略：${it.tip}</div>`;
       html+=`</div></div>`;
@@ -447,7 +442,10 @@ function buildHotels(){
       <div class="kv"><b>入住</b><span>${h.night}</span></div>
       <div class="kv"><b>地址</b><span>${h.addr}</span></div>
       <span class="pill">${h.tag}</span><br>
-      <a class="mapbtn" style="margin-top:8px" target="_blank" rel="noopener" href="${h.map}">📍 開啟導航</a>
+      <div class="mapbtn-wrap" style="margin-top:8px">
+        <a class="mapbtn" target="_blank" rel="noopener" href="${h.map}">📍 開啟導航</a>
+        ${h.mc ? `<span class="mapcode-badge">MC: ${h.mc}</span>` : ""}
+      </div>
     </div>`).join("");
 }
 function buildPacking(){
@@ -492,19 +490,60 @@ function clampVB(){
   if(vb.x<-60)vb.x=-60; if(vb.y<-60)vb.y=-60;
   if(vb.x+vb.w>440)vb.x=440-vb.w; if(vb.y+vb.h>600)vb.y=600-vb.h;
 }
+
+// 實作雙指縮放與拖曳 (Pinch-to-Zoom & Drag)
 function initMapDrag(){
   const s=document.getElementById("routeMap");if(!s)return;
   let drag=false,px,py;
-  s.addEventListener("pointerdown",e=>{drag=true;px=e.clientX;py=e.clientY;s.setPointerCapture(e.pointerId);});
+  let initDist=0, initW=0;
+
+  // 滑鼠事件
+  s.addEventListener("pointerdown",e=>{
+    drag=true;px=e.clientX;py=e.clientY;
+    if(e.pointerType !== 'touch') s.setPointerCapture(e.pointerId);
+  });
   s.addEventListener("pointermove",e=>{
-    if(!drag)return;
+    if(!drag || e.pointerType === 'touch') return;
     const r=s.getBoundingClientRect();
-    vb.x-=(e.clientX-px)*vb.w/r.width;
-    vb.y-=(e.clientY-py)*vb.h/r.height;
+    vb.x-=(e.clientX-px)*vb.w/r.width; vb.y-=(e.clientY-py)*vb.h/r.height;
     px=e.clientX;py=e.clientY;clampVB();applyVB();
   });
   s.addEventListener("pointerup",()=>drag=false);
   s.addEventListener("pointercancel",()=>drag=false);
+
+  // 觸控雙指縮放事件
+  s.addEventListener("touchstart", e => {
+    if(e.touches.length === 2) {
+      drag = false;
+      initDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      initW = vb.w;
+    } else if (e.touches.length === 1) {
+      drag = true;
+      px = e.touches[0].clientX; py = e.touches[0].clientY;
+    }
+  }, {passive: false});
+
+  s.addEventListener("touchmove", e => {
+    if(e.touches.length === 2) {
+      e.preventDefault(); // 防止頁面原生縮放捲動
+      const currDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const scale = initDist / currDist;
+      const cx = vb.x + vb.w/2, cy = vb.y + vb.h/2;
+      let nw = initW * scale;
+      nw = Math.max(150, Math.min(380, nw)); 
+      vb.w = nw; vb.h = nw * (540/380);
+      vb.x = cx - vb.w/2; vb.y = cy - vb.h/2;
+      clampVB(); applyVB();
+    } else if (drag && e.touches.length === 1) {
+      e.preventDefault();
+      const r=s.getBoundingClientRect();
+      vb.x-=(e.touches[0].clientX-px)*vb.w/r.width; vb.y-=(e.touches[0].clientY-py)*vb.h/r.height;
+      px=e.touches[0].clientX;py=e.touches[0].clientY;
+      clampVB();applyVB();
+    }
+  }, {passive: false});
+
+  s.addEventListener("touchend", () => { drag = false; });
 }
 
 document.querySelectorAll("#nav button").forEach(b=>{
@@ -513,6 +552,7 @@ document.querySelectorAll("#nav button").forEach(b=>{
     b.classList.add("active");
     document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
     document.getElementById(b.dataset.tab).classList.add("active");
+    if(b.dataset.tab==="p-note"&&boardApi())loadBoard();
     window.scrollTo({top:0,behavior:"smooth"});
   };
 });
@@ -531,7 +571,7 @@ function wireNotes(){
 }
 function exportNotes(){
   let out="🌺 沖繩行程筆記備份 ｜ "+new Date().toLocaleString()+"\n\n";
-  const labels={memo:"📝 備忘錄",day1:"Day1 (7/2)",day2:"Day2 (7/3)",day3:"Day3 (7/4)",day4:"Day4 (7/5)",day5:"Day5 (7/6)",day6:"Day6 (7/7)"};
+  const labels={day1:"Day1 (7/2)",day2:"Day2 (7/3)",day3:"Day3 (7/4)",day4:"Day4 (7/5)",day5:"Day5 (7/6)",day6:"Day6 (7/7)"};
   let any=false;
   Object.keys(labels).forEach(k=>{
     const v=localStorage.getItem("okinote_"+k);
@@ -542,12 +582,70 @@ function exportNotes(){
 }
 function clearNotes(){
   if(!confirm("確定清除所有筆記？此動作無法復原。"))return;
-  ["memo","day1","day2","day3","day4","day5","day6"].forEach(k=>localStorage.removeItem("okinote_"+k));
+  ["day1","day2","day3","day4","day5","day6"].forEach(k=>localStorage.removeItem("okinote_"+k));
   document.querySelectorAll("textarea.note[data-note]").forEach(ta=>ta.value="");
   const eb=document.getElementById("exportBox");if(eb)eb.value="";
 }
 
-buildDays();buildHotels();buildPacking();buildBudget();buildNotes();buildLegend();initMapDrag();wireNotes();
+function initLinks(){
+  const ba=document.getElementById("boardApi");if(ba)ba.value=localStorage.getItem("okinote_boardapi")||"";
+  const bn=document.getElementById("boardName");if(bn)bn.value=localStorage.getItem("okinote_boardname")||"";
+}
+
+const BOARD_API="";
+function boardApi(){return (localStorage.getItem("okinote_boardapi")||BOARD_API||"").trim();}
+
+// 正確的字元跳脫函式，避免報錯
+function esc(s){
+  const map = {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"};
+  return String(s).replace(/[&<>"']/g, c => map[c]);
+}
+
+// 修正 iOS Safari 日期解析
+function fmtTime(t){
+  let d = new Date(t);
+  if (isNaN(d) && typeof t === 'string') {
+    d = new Date(t.replace(/-/g, '/').replace('T', ' ').split('.')[0]); 
+  }
+  if(isNaN(d)) return "";
+  return (d.getMonth()+1)+"/"+d.getDate()+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+}
+
+function saveBoardApi(){
+  const v=document.getElementById("boardApi").value.trim();
+  localStorage.setItem("okinote_boardapi",v);
+  const s=document.querySelector('[data-saved="boardapi"]');if(s){s.textContent="✓ 已儲存，載入中…";setTimeout(()=>s.textContent="",2000);}
+  loadBoard();
+}
+async function loadBoard(){
+  const box=document.getElementById("boardList");if(!box)return;
+  const api=boardApi();
+  if(!api){box.innerHTML='<div class="boardstat">尚未設定留言板 API。請展開下方「⚙️ 設定 API」進行操作。</div>';return;}
+  box.innerHTML='<div class="boardstat">讀取中…</div>';
+  try{
+    const r=await fetch(api,{method:"GET"});
+    const d=await r.json();
+    if(!d.ok)throw new Error("server");
+    if(!d.rows||!d.rows.length){box.innerHTML='<div class="boardstat">還沒有留言，搶頭香！</div>';return;}
+    box.innerHTML=d.rows.slice().reverse().map(x=>`<div class="msg"><div class="msgh"><b>${esc(x.name||"匿名")}</b><span>${fmtTime(x.time)}</span></div><div>${esc(x.msg||"")}</div></div>`).join("");
+  }catch(e){box.innerHTML='<div class="boardstat">讀取失敗，請確認 API 網址是否正確。</div>';}
+}
+async function postBoard(){
+  const api=boardApi();if(!api){alert("請先在「⚙️ 設定 API」貼上並儲存 Apps Script 網址");return;}
+  const name=(document.getElementById("boardName").value||"匿名").trim();
+  const msg=(document.getElementById("boardMsg").value||"").trim();
+  if(!msg){alert("請輸入留言內容");return;}
+  localStorage.setItem("okinote_boardname",name);
+  const btn=document.getElementById("boardSend");btn.disabled=true;btn.textContent="送出中…";
+  try{
+    await fetch(api,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({name:name,msg:msg})});
+    document.getElementById("boardMsg").value="";
+    await loadBoard();
+  }catch(e){alert("送出失敗，請確認網路與 API 設定");}
+  btn.disabled=false;btn.textContent="送出留言";
+}
+
+buildDays();buildHotels();buildPacking();buildBudget();buildNotes();buildLegend();initMapDrag();wireNotes();initLinks();loadBoard();
 </script>
 </body>
 </html>
