@@ -33,6 +33,18 @@
   header h1{font-size:19px;letter-spacing:.5px;display:flex;align-items:center;gap:7px}
   header .sub{font-size:12.5px;opacity:.92;margin-top:3px}
   header .meta{font-size:11.5px;opacity:.85;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 12px}
+  
+  /* 雲端資料夾連結圖示樣式 */
+  .drive-link{
+    position:absolute; top:14px; right:16px; z-index:10;
+    background:rgba(255,255,255,0.25); color:#fff; text-decoration:none;
+    width:34px; height:34px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; backdrop-filter:blur(4px);
+    box-shadow:0 2px 8px rgba(0,0,0,0.12); transition:0.2s;
+  }
+  .drive-link:active{transform:scale(0.9)}
+
   main{padding:14px 13px 20px;max-width:560px;margin:0 auto}
   .page{display:none;animation:fade .35s ease}
   .page.active{display:block}
@@ -95,16 +107,13 @@
   .zoomctl button{width:36px;height:36px;border:none;border-radius:10px;background:rgba(255,255,255,.95);color:var(--sea-d);font-size:18px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.18);cursor:pointer;display:flex;align-items:center;justify-content:center}
   .zoomctl button:active{transform:scale(.92)}
   .maphint{font-size:11px;color:var(--muted);text-align:center;margin:8px 2px 0}
-  .notebox{margin-top:12px;background:#fff;border-radius:15px;padding:12px 13px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
-  .notebox label{font-size:12.5px;font-weight:600;color:var(--sea-d);display:flex;align-items:center;gap:6px;margin-bottom:7px}
-  textarea.note{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;line-height:1.5;color:var(--ink);resize:vertical;min-height:62px;background:#fbfdfd}
-  textarea.note:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
-  .saved{font-size:11px;color:var(--green);margin-top:5px;min-height:14px}
   .btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;border:none;font-size:13px;font-weight:600;padding:10px 15px;border-radius:12px;cursor:pointer;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:4px 6px 4px 0}
   .btn:active{transform:scale(.97)}
   .btn.ghost{background:#fff;color:var(--sea-d);border:1.5px solid var(--line);box-shadow:none}
   input.linkin{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;color:var(--ink);background:#fbfdfd;margin-bottom:8px}
   input.linkin:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
+  textarea.note{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;line-height:1.5;color:var(--ink);resize:vertical;min-height:62px;background:#fbfdfd}
+  textarea.note:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
   .msg{background:#f3fbfc;border:1px solid var(--line);border-radius:12px;padding:8px 11px;margin-bottom:8px}
   .msgh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
   .msgh b{font-size:12.5px;color:var(--sea-d)}
@@ -113,6 +122,7 @@
   .boardstat{font-size:11.5px;color:var(--muted);padding:8px 2px}
   details.apicfg{margin-top:8px}
   details.apicfg summary{font-size:12px;color:var(--sea-d);cursor:pointer}
+  .saved{font-size:11px;color:var(--green);margin-top:5px;min-height:14px}
   nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;box-shadow:0 -2px 14px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
   nav button{flex:1;background:none;border:0;padding:8px 1px 7px;font-size:10px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s}
   nav button .ic{font-size:18px;line-height:1}
@@ -124,6 +134,8 @@
 <body>
 
 <header>
+  <a href="https://drive.google.com/drive/folders/1UrFFDnFD64kOp53BtSyObbS24J11J4SY?usp=drive_link" target="_blank" class="drive-link" aria-label="重要檔案雲端資料夾">📁</a>
+  
   <h1>🌺 沖繩親子自駕</h1>
   <div class="sub">6天5夜 ｜ 2026/7/2 – 7/7</div>
   <div class="meta"><span>👨‍👩‍👧‍👦 4人(2大2小)</span><span>👶 8個月</span><span>🧒 7歲</span><span>🚗 自駕</span></div>
@@ -279,13 +291,6 @@
         </div>
       </details>
     </div>
-    <div class="block">
-      <h4>💾 備份 / 還原（個人筆記）</h4>
-      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">行程中的每日個人備忘錄存在這支手機裡，換裝置前可匯出備份。</p>
-      <button class="btn" onclick="exportNotes()">📤 匯出全部筆記</button>
-      <button class="btn ghost" onclick="clearNotes()">🗑️ 清除全部</button>
-      <textarea class="note" id="exportBox" style="min-height:100px;margin-top:10px" placeholder="按「匯出」會把所有筆記整理到這裡，長按全選即可複製…"></textarea>
-    </div>
   </section>
 
   <div class="foot">本行程依「8個月嬰兒＋7歲小孩」家庭優化 🌴<br>不貪多景點・北部不換飯店</div>
@@ -303,7 +308,6 @@
 </nav>
 
 <script>
-// 陣列加入 Mapcode (第三個參數)
 const days = [
   { d:"Day 1", date:"7/2", wk:"四", title:"抵達・美國村", est:"約 ¥8,500", route:null, items:[
     {t:"06:30",a:"台灣全鋒接送 → 桃機T2",det:["🚐 接送","已訂"]},
@@ -414,7 +418,6 @@ function buildDays(){
     day.items.forEach(it=>{
       html+=`<div class="item"><div class="card"><span class="time">${it.t}</span><div class="act">${it.a}</div>`;
       if(it.det&&it.det.length)html+=`<div class="det">${detHtml(it.det)}</div>`;
-      // Mapcode 渲染區塊更新
       if(it.map){
         html+=`<div class="mapbtn-wrap">` + it.map.map((m,idx)=>{
           let btn = `<a class="mapbtn${idx>0?' alt':''}" target="_blank" rel="noopener" href="${m[1]}">📍 ${m[0]}</a>`;
@@ -427,7 +430,6 @@ function buildDays(){
       html+=`</div></div>`;
     });
     html+=`</div>`;
-    html+=`<div class="notebox"><label>✏️ Day${i+1} 今日筆記（自動儲存）</label><textarea class="note" data-note="day${i+1}" placeholder="記錄想吃的、想買的、臨時調整、實際花費…"></textarea><div class="saved" data-saved="day${i+1}"></div></div>`;
     body.innerHTML=html;bodies.appendChild(body);
   });
 }
@@ -525,7 +527,7 @@ function initMapDrag(){
 
   s.addEventListener("touchmove", e => {
     if(e.touches.length === 2) {
-      e.preventDefault(); // 防止頁面原生縮放捲動
+      e.preventDefault();
       const currDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
       const scale = initDist / currDist;
       const cx = vb.x + vb.w/2, cy = vb.y + vb.h/2;
@@ -557,36 +559,6 @@ document.querySelectorAll("#nav button").forEach(b=>{
   };
 });
 
-function wireNotes(){
-  document.querySelectorAll("textarea.note[data-note]").forEach(ta=>{
-    const key="okinote_"+ta.dataset.note;
-    ta.value=localStorage.getItem(key)||"";
-    let tmr;
-    ta.addEventListener("input",()=>{
-      localStorage.setItem(key,ta.value);
-      const s=document.querySelector(`[data-saved="${ta.dataset.note}"]`);
-      if(s){s.textContent="✓ 已自動儲存";clearTimeout(tmr);tmr=setTimeout(()=>s.textContent="",1500);}
-    });
-  });
-}
-function exportNotes(){
-  let out="🌺 沖繩行程筆記備份 ｜ "+new Date().toLocaleString()+"\n\n";
-  const labels={day1:"Day1 (7/2)",day2:"Day2 (7/3)",day3:"Day3 (7/4)",day4:"Day4 (7/5)",day5:"Day5 (7/6)",day6:"Day6 (7/7)"};
-  let any=false;
-  Object.keys(labels).forEach(k=>{
-    const v=localStorage.getItem("okinote_"+k);
-    if(v&&v.trim()){out+="【"+labels[k]+"】\n"+v.trim()+"\n\n";any=true;}
-  });
-  if(!any)out+="(目前沒有任何筆記)";
-  const box=document.getElementById("exportBox");box.value=out;box.focus();box.select();
-}
-function clearNotes(){
-  if(!confirm("確定清除所有筆記？此動作無法復原。"))return;
-  ["day1","day2","day3","day4","day5","day6"].forEach(k=>localStorage.removeItem("okinote_"+k));
-  document.querySelectorAll("textarea.note[data-note]").forEach(ta=>ta.value="");
-  const eb=document.getElementById("exportBox");if(eb)eb.value="";
-}
-
 function initLinks(){
   const ba=document.getElementById("boardApi");if(ba)ba.value=localStorage.getItem("okinote_boardapi")||"";
   const bn=document.getElementById("boardName");if(bn)bn.value=localStorage.getItem("okinote_boardname")||"";
@@ -597,7 +569,7 @@ function boardApi(){return (localStorage.getItem("okinote_boardapi")||BOARD_API|
 
 // 正確的字元跳脫函式，避免報錯
 function esc(s){
-  const map = {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"};
+  const map = {"&":"&","<":"<",">":">","\"":"&quot;","'":"&#39;"};
   return String(s).replace(/[&<>"']/g, c => map[c]);
 }
 
@@ -645,7 +617,7 @@ async function postBoard(){
   btn.disabled=false;btn.textContent="送出留言";
 }
 
-buildDays();buildHotels();buildPacking();buildBudget();buildNotes();buildLegend();initMapDrag();wireNotes();initLinks();loadBoard();
+buildDays();buildHotels();buildPacking();buildBudget();buildNotes();buildLegend();initMapDrag();initLinks();loadBoard();
 </script>
 </body>
 </html>
