@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- PWA 設定 -->
 <meta name="theme-color" content="#0a8ea0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,153 +11,180 @@
 <link rel="apple-touch-icon" href="https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/local_florist/default/192px.svg">
 <title>沖繩親子 6天5夜 🌺</title>
 <style>
+  /* 簡潔清晰版配色 - 提高對比、降低戶外反光干擾 */
   :root{
-    --sea:#0a8ea0; --sea-d:#066a78; --sand:#fef6e4; --coral:#ff8a5c;
-    --sky:#7fd3e0; --ink:#173a40; --muted:#6b8a90; --card:#ffffff;
-    --line:#e3eef0; --hibiscus:#ff5d73; --green:#2bb673;
+    --sea:#0a8ea0; --sea-d:#055a66; --sand:#f4f7f8; --coral:#e65c30;
+    --sky:#e7f5f7; --ink:#111827; --muted:#4b5563; --card:#ffffff;
+    --line:#d1d5db; --hibiscus:#d9384e; --green:#16a34a;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
-    background:linear-gradient(180deg,#e7f7fa 0%,#fef6e4 100%);
-    color:var(--ink); padding-bottom:74px; line-height:1.6;
-    -webkit-font-smoothing:antialiased;
+    background:var(--sand);
+    color:var(--ink); padding-bottom:86px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; font-size:15px; /* 基礎字體放大 */
   }
+  
+  /* 頂部 Header - 簡化漸層 */
   header{
     position:sticky; top:0; z-index:50;
-    background:linear-gradient(135deg,var(--sea) 0%,var(--sea-d) 100%);
-    color:#fff; padding:16px 18px 14px; box-shadow:0 2px 14px rgba(6,106,120,.25); overflow:hidden;
+    background:var(--sea);
+    color:#fff; padding:18px 20px 16px; 
+    box-shadow:0 2px 8px rgba(0,0,0,0.1); 
   }
-  header .wave{position:absolute;left:0;right:0;bottom:-1px;height:14px;
-    background:radial-gradient(circle at 10px -4px, var(--sand) 9px, transparent 10px) repeat-x;background-size:20px 14px;}
-  header h1{font-size:19px;letter-spacing:.5px;display:flex;align-items:center;gap:7px}
-  header .sub{font-size:12.5px;opacity:.92;margin-top:3px}
-  header .meta{font-size:11.5px;opacity:.85;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 12px}
+  header h1{font-size:21px;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+  header .sub{font-size:14px;opacity:0.95;margin-top:4px}
+  header .meta{font-size:12.5px;opacity:0.9;margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 14px}
   
-  /* 雲端資料夾連結圖示樣式 */
   .drive-link{
-    position:absolute; top:14px; right:16px; z-index:10;
-    background:rgba(255,255,255,0.25); color:#fff; text-decoration:none;
-    width:34px; height:34px; border-radius:10px;
+    position:absolute; top:18px; right:20px; z-index:10;
+    background:rgba(255,255,255,0.2); color:#fff; text-decoration:none;
+    width:38px; height:38px; border-radius:10px;
     display:flex; align-items:center; justify-content:center;
-    font-size:18px; backdrop-filter:blur(4px);
-    box-shadow:0 2px 8px rgba(0,0,0,0.12); transition:0.2s;
+    font-size:20px; border:1px solid rgba(255,255,255,0.3);
   }
-  .drive-link:active{transform:scale(0.9)}
+  .drive-link:active{transform:scale(0.92);background:rgba(255,255,255,0.3)}
 
-  main{padding:14px 13px 20px;max-width:560px;margin:0 auto}
-  .page{display:none;animation:fade .35s ease}
+  main{padding:16px 14px 24px;max-width:560px;margin:0 auto}
+  .page{display:none;animation:fade .25s ease}
   .page.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  h2.section{font-size:16px;margin:4px 2px 12px;display:flex;align-items:center;gap:7px;color:var(--sea-d)}
-  .daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;-ms-overflow-style:none;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  h2.section{font-size:18px;margin:10px 2px 14px;display:flex;align-items:center;gap:7px;color:var(--sea-d);font-weight:700}
+  
+  /* 日期標籤 - 更大更好點 */
+  .daytabs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;-ms-overflow-style:none;}
   .daytabs::-webkit-scrollbar{display:none}
-  .daytab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:14px;
-    padding:8px 13px;text-align:center;font-size:12px;min-width:62px;cursor:pointer;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-  .daytab b{display:block;font-size:15px;color:var(--sea-d)}
-  .daytab small{color:var(--muted);font-size:10.5px}
-  .daytab.active{background:linear-gradient(135deg,var(--coral),var(--hibiscus));border-color:transparent;color:#fff;box-shadow:0 4px 12px rgba(255,93,115,.35)}
+  .daytab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:12px;
+    padding:10px 14px;text-align:center;font-size:13px;min-width:72px;cursor:pointer;transition:.2s;}
+  .daytab b{display:block;font-size:17px;color:var(--sea-d);margin-bottom:2px}
+  .daytab small{color:var(--muted);font-size:11px}
+  .daytab.active{background:var(--sea);border-color:var(--sea);color:#fff;}
   .daytab.active b,.daytab.active small{color:#fff}
+  
   .daybody{display:none}
   .daybody.active{display:block}
-  .dayhead{background:linear-gradient(135deg,var(--sky),var(--sea));color:#fff;border-radius:16px;
-    padding:13px 15px;margin-bottom:13px;box-shadow:0 4px 14px rgba(10,142,160,.25)}
-  .dayhead h3{font-size:16px}
-  .dayhead .est{font-size:12px;opacity:.95;margin-top:4px}
-  .route{background:#fff7ed;border:1px dashed var(--coral);border-radius:12px;padding:9px 12px;font-size:12px;color:#b5532e;margin-bottom:13px}
-  .tl{position:relative;padding-left:18px}
-  .tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--sky),var(--sand))}
-  .item{position:relative;margin-bottom:12px}
-  .item::before{content:"";position:absolute;left:-16px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--coral);border:2.5px solid #fff;box-shadow:0 0 0 2px var(--sky)}
-  .card{background:var(--card);border-radius:15px;padding:12px 13px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
-  .time{font-size:12px;font-weight:700;color:var(--sea);background:#e7f7fa;display:inline-block;padding:1px 9px;border-radius:20px;margin-bottom:6px}
-  .act{font-size:14.5px;font-weight:600;margin-bottom:5px}
-  .det{display:flex;flex-wrap:wrap;gap:5px 10px;font-size:11.5px;color:var(--muted);margin-bottom:8px}
-  .det span{display:inline-flex;align-items:center;gap:3px}
-  .badge-paid{color:var(--green);font-weight:600}
-  .mapcode-badge{font-size:10.5px;color:var(--sea-d);background:#e7f7fa;padding:2px 7px;border-radius:6px;border:1px solid var(--sky);font-family:monospace;}
-  .mapbtn-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0}
-  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:10px;box-shadow:0 3px 9px rgba(10,142,160,.3)}
+  .dayhead{background:var(--sea-d);color:#fff;border-radius:12px;
+    padding:14px 16px;margin-bottom:16px;}
+  .dayhead h3{font-size:17px; margin-bottom:4px}
+  .dayhead .est{font-size:13px;opacity:0.9;}
+  .route{background:#fff;border:1.5px dashed var(--coral);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--coral);margin-bottom:16px; font-weight:600;}
+  
+  /* 時間軸 */
+  .tl{position:relative;padding-left:22px}
+  .tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:3px;background:var(--line)}
+  .item{position:relative;margin-bottom:16px}
+  .item::before{content:"";position:absolute;left:-20.5px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--sea);border:3px solid #fff;}
+  
+  /* 卡片設計 - 取消陰影，實色邊框防眩光 */
+  .card, .block{background:var(--card);border-radius:12px;padding:14px 16px;border:1.5px solid var(--line); margin-bottom:14px;}
+  .time{font-size:13.5px;font-weight:700;color:var(--sea-d);background:var(--sky);display:inline-block;padding:3px 10px;border-radius:6px;margin-bottom:8px}
+  .act{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+  .det{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--muted);margin-bottom:10px}
+  .badge-paid{color:var(--green);font-weight:700}
+  
+  /* 按鈕加大 */
+  .mapcode-badge{font-size:12px;color:var(--sea-d);background:var(--sky);padding:4px 8px;border-radius:6px;font-family:monospace;font-weight:600}
+  .mapbtn-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0}
+  .mapbtn{display:inline-flex;align-items:center;gap:5px;background:var(--sea);color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;}
   .mapbtn:active{transform:scale(.96)}
-  .mapbtn.alt{background:linear-gradient(135deg,#ffb27a,var(--coral))}
-  .note-line{font-size:11.5px;color:#b5532e;background:#fff7ed;border-radius:9px;padding:6px 9px;margin-top:6px}
-  .tip-line{font-size:11.5px;color:#0f6e56;background:#e1f5ee;border-radius:9px;padding:6px 9px;margin-top:6px;border-left:3px solid #1d9e75}
-  .block{background:#fff;border-radius:15px;padding:14px 15px;margin-bottom:12px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line)}
-  .block h4{font-size:14.5px;color:var(--sea-d);margin-bottom:9px;display:flex;align-items:center;gap:6px}
-  .kv{font-size:13px;margin:5px 0;display:flex;gap:8px}
-  .kv b{flex:0 0 78px;color:var(--muted);font-weight:600}
-  .pill{display:inline-block;background:#e7f7fa;color:var(--sea-d);font-size:11px;padding:2px 9px;border-radius:20px;margin:2px 3px 2px 0}
-  .hotel{border-left:4px solid var(--coral)}
+  .mapbtn.alt{background:var(--coral)}
+  
+  /* 提示行 */
+  .note-line, .tip-line, .rain-line{font-size:13px;border-radius:8px;padding:8px 10px;margin-top:8px;line-height:1.5}
+  .note-line{color:#9a3412;background:#ffedd5;border-left:4px solid #f97316}
+  .tip-line{color:#115e59;background:#ccfbf1;border-left:4px solid #14b8a6}
+  .rain-line{color:#1e3a8a;background:#dbeafe;border-left:4px solid #3b82f6; font-weight:600;} /* 新增雨備樣式 */
+  .rain-line a{color:inherit; text-decoration:underline; text-underline-offset:2px;}
+  
+  .block h4{font-size:16px;color:var(--sea-d);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .kv{font-size:14.5px;margin:8px 0;display:flex;gap:10px;line-height:1.5}
+  .kv b{flex:0 0 85px;color:var(--muted);font-weight:600}
+  .kv a{color:var(--sea); text-decoration:underline; font-weight:600;}
+  
+  .pill{display:inline-block;background:var(--sky);color:var(--sea-d);font-size:12px;padding:4px 10px;border-radius:6px;margin:3px 4px 3px 0;font-weight:600}
+  .hotel{border-left:5px solid var(--coral)}
+  
   ul.clean{list-style:none}
-  ul.clean li{font-size:12.5px;padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px;line-height:1.5}
+  ul.clean li{font-size:14px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;line-height:1.5}
   ul.clean li:last-child{border:0}
   ul.clean li::before{content:"🐚";flex:0 0 auto}
-  .check li::before{content:"☐";font-size:15px;color:var(--coral)}
+  .check li::before{content:"☐";font-size:18px;color:var(--coral)}
   .check li.on::before{content:"☑";color:var(--green)}
   .check li{cursor:pointer}
   .check li.on{color:var(--muted);text-decoration:line-through}
-  .budget-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed var(--line)}
-  .budget-row small{color:var(--muted);font-size:10.5px;display:block}
-  .budget-row.total{font-weight:700;color:var(--sea-d);font-size:14.5px;border:0;padding-top:11px}
-  .yen{font-variant-numeric:tabular-nums}
-  .mapwrap{position:relative;background:#fff;border-radius:15px;padding:8px;box-shadow:0 2px 10px rgba(23,58,64,.07);border:1px solid var(--line);overflow:hidden}
+  
+  .budget-row{display:flex;justify-content:space-between;font-size:14.5px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .budget-row small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
+  .budget-row.total{font-weight:700;color:var(--sea-d);font-size:16px;border:0;padding-top:14px}
+  
+  /* 地圖 */
+  .mapwrap{position:relative;background:#fff;border-radius:12px;padding:8px;border:1.5px solid var(--line);overflow:hidden}
   #routeMap{width:100%;height:auto;display:block;touch-action:none;cursor:grab}
   #routeMap:active{cursor:grabbing}
-  .zoomctl{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
-  .zoomctl button{width:36px;height:36px;border:none;border-radius:10px;background:rgba(255,255,255,.95);color:var(--sea-d);font-size:18px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.18);cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .zoomctl button:active{transform:scale(.92)}
-  .maphint{font-size:11px;color:var(--muted);text-align:center;margin:8px 2px 0}
-  .btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--sea),var(--sea-d));color:#fff;border:none;font-size:13px;font-weight:600;padding:10px 15px;border-radius:12px;cursor:pointer;box-shadow:0 3px 9px rgba(10,142,160,.3);margin:4px 6px 4px 0}
-  .btn:active{transform:scale(.97)}
-  .btn.ghost{background:#fff;color:var(--sea-d);border:1.5px solid var(--line);box-shadow:none}
-  input.linkin{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;color:var(--ink);background:#fbfdfd;margin-bottom:8px}
-  input.linkin:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
-  textarea.note{width:100%;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit;line-height:1.5;color:var(--ink);resize:vertical;min-height:62px;background:#fbfdfd}
-  textarea.note:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(127,211,224,.25)}
-  .msg{background:#f3fbfc;border:1px solid var(--line);border-radius:12px;padding:8px 11px;margin-bottom:8px}
-  .msgh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
-  .msgh b{font-size:12.5px;color:var(--sea-d)}
-  .msgh span{font-size:10.5px;color:var(--muted)}
-  .msg div:last-child{font-size:13px;color:var(--ink);white-space:pre-wrap;word-break:break-word}
-  .boardstat{font-size:11.5px;color:var(--muted);padding:8px 2px}
-  details.apicfg{margin-top:8px}
-  details.apicfg summary{font-size:12px;color:var(--sea-d);cursor:pointer}
-  .saved{font-size:11px;color:var(--green);margin-top:5px;min-height:14px}
-  nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;box-shadow:0 -2px 14px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
-  nav button{flex:1;background:none;border:0;padding:8px 1px 7px;font-size:10px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.2s}
-  nav button .ic{font-size:18px;line-height:1}
+  .zoomctl{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:8px;z-index:5}
+  .zoomctl button{width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.9);color:var(--ink);font-size:20px;font-weight:700;cursor:pointer;}
+  .maphint{font-size:12.5px;color:var(--muted);text-align:center;margin:10px 2px 0}
+  
+  /* 底部導航列 */
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#ffffff;border-top:1.5px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+  nav::-webkit-scrollbar{display:none;}
+  nav button{flex:0 0 72px;background:none;border:0;padding:10px 2px 8px;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer; font-weight:600;}
+  nav button .ic{font-size:22px;line-height:1}
   nav button.active{color:var(--sea)}
   nav button.active .ic{transform:translateY(-2px)}
-  .foot{text-align:center;font-size:11px;color:var(--muted);padding:14px 10px 4px}
+  .foot{text-align:center;font-size:12px;color:var(--muted);padding:14px 10px 10px}
+
+  /* 翻譯/溝通大字卡 */
+  .trans-card{background:#fff;border:2px solid var(--sea);border-radius:16px;padding:24px 20px;text-align:center;}
+  .trans-card p{font-size:18px;line-height:1.6;font-weight:600;color:var(--ink);margin-bottom:20px;text-align:left;}
+  .trans-badge{display:inline-block;background:var(--sea);color:#fff;padding:6px 14px;border-radius:20px;font-size:14px;font-weight:700;margin-bottom:16px;}
+
+  /* 留言板/表單 */
+  .btn{display:inline-flex;align-items:center;gap:6px;background:var(--sea);color:#fff;border:none;font-size:14.5px;font-weight:600;padding:12px 16px;border-radius:8px;cursor:pointer;margin:4px 6px 4px 0}
+  .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .btn.full{width:100%; justify-content:center; margin:8px 0 0 0}
+  input.linkin, textarea.note{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:12px;font-size:15px;font-family:inherit;color:var(--ink);background:#fff;margin-bottom:10px}
+  input.linkin:focus, textarea.note:focus{outline:none;border-color:var(--sea);}
+
+  @media print {
+    nav, .zoomctl, .maphint, .drive-link, .daytabs, button.btn, .apicfg { display: none !important; }
+    body { padding: 0; background: #fff; color: #000; }
+    main { max-width: 100%; padding: 0; margin: 0; }
+    .page { display: block !important; page-break-after: always; animation: none; }
+    .page#p-note, .page#p-lang { display: none !important; }
+    .daybody { display: block !important; page-break-inside: avoid; margin-bottom: 20px; }
+    .card, .block { border: 1px solid #ccc; page-break-inside: avoid; }
+    a { text-decoration: none; color: #000; }
+  }
 </style>
 </head>
 <body>
 
 <header>
   <a href="https://drive.google.com/drive/folders/1UrFFDnFD64kOp53BtSyObbS24J11J4SY?usp=drive_link" target="_blank" class="drive-link" aria-label="重要檔案雲端資料夾">📁</a>
-  
   <h1>🌺 沖繩親子自駕</h1>
   <div class="sub">6天5夜 ｜ 2026/7/2 – 7/7</div>
   <div class="meta"><span>👨‍👩‍👧‍👦 4人(2大2小)</span><span>👶 8個月</span><span>🧒 7歲</span><span>🚗 自駕</span></div>
-  <div class="wave"></div>
 </header>
 
 <main>
+  <!-- 行程 -->
   <section class="page active" id="p-days">
     <div class="daytabs" id="daytabs"></div>
     <div id="daybodies"></div>
   </section>
 
+  <!-- 地圖 -->
   <section class="page" id="p-map">
     <h2 class="section">🗺️ 全島行車路線圖</h2>
     <div class="mapwrap">
       <div class="zoomctl">
         <button onclick="zoomMap(1.3)" aria-label="放大">＋</button>
         <button onclick="zoomMap(0.77)" aria-label="縮小">－</button>
-        <button onclick="resetMap()" aria-label="重設" style="font-size:15px">⟳</button>
+        <button onclick="resetMap()" aria-label="重設">⟳</button>
       </div>
-      <svg id="routeMap" viewBox="0 0 380 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="沖繩自駕路線圖">
+      <svg id="routeMap" viewBox="0 0 380 540" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="seaG" cx="50%" cy="35%" r="80%">
             <stop offset="0%" stop-color="#eafaff"/><stop offset="100%" stop-color="#cfeef5"/>
@@ -166,16 +194,9 @@
           </linearGradient>
         </defs>
         <rect x="0" y="0" width="380" height="540" fill="url(#seaG)"/>
-        <g fill="#bfe6ef" opacity="0.5">
-          <circle cx="40" cy="60" r="2"/><circle cx="330" cy="100" r="2"/><circle cx="60" cy="420" r="2"/>
-          <circle cx="320" cy="380" r="2"/><circle cx="300" cy="470" r="2"/><circle cx="50" cy="200" r="2"/>
-        </g>
         <text x="20" y="34" font-size="14" fill="#0c6a78" font-weight="700">沖繩本島・自駕路線</text>
         <text x="360" y="32" text-anchor="end" font-size="12" fill="#1893a5">N ↑</text>
-
         <path d="M150,470 C178,440 168,414 180,384 C173,356 184,330 173,300 C181,276 191,228 181,190 C176,176 160,172 156,188 C151,206 154,226 147,236 C136,232 124,242 112,246 C92,234 78,216 92,202 C108,193 126,214 146,236 C151,256 139,278 148,308 C153,340 137,366 148,398 C155,424 138,446 150,470 Z" fill="url(#islG)" stroke="#86c06a" stroke-width="2.2" stroke-linejoin="round"/>
-        <circle cx="220" cy="216" r="14" fill="url(#islG)" stroke="#86c06a" stroke-width="2"/>
-
         <path d="M150,452 L145,428 L136,404" fill="none" stroke="#2f7fd6" stroke-width="3.2" stroke-linecap="round"/>
         <path d="M136,404 L182,378 L162,400 L136,404" fill="none" stroke="#16a07a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M136,404 C172,322 206,262 214,224" fill="none" stroke="#dd5a30" stroke-width="3.2" stroke-linecap="round"/>
@@ -183,7 +204,6 @@
         <path d="M156,330 L150,272" fill="none" stroke="#ef9f27" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
         <path d="M156,330 C118,292 92,250 95,218" fill="none" stroke="#d4537e" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
         <path d="M156,330 C152,388 150,430 150,460" fill="none" stroke="#7f77dd" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 5"/>
-
         <g font-size="11.5" style="paint-order:stroke;stroke:#ffffff;stroke-width:3.5px;stroke-linejoin:round">
           <text x="166" y="456" fill="#3a3a37">①那霸機場 起/終</text>
           <text x="160" y="430" fill="#0c447c">②PARCO CITY</text>
@@ -192,21 +212,16 @@
           <text x="196" y="392" fill="#0f6e56">⑤AEON Rycom</text>
           <text x="234" y="220" fill="#8a3417">⑥古宇利島</text>
           <text x="166" y="276" fill="#7a4708">⑦名護 鳳梨園·動物園</text>
-          <text x="170" y="328" fill="#7a2e12">🏠 瀨良垣BEB5·萬座毛 D3-6住</text>
+          <text x="170" y="328" fill="#7a2e12">🏠 瀨良垣BEB5 D3-6住</text>
           <text x="78" y="208" fill="#8a3357">⑨美麗海水族館</text>
           <text x="50" y="450" fill="#3c3489">⑩國際通·好市多</text>
         </g>
         <g stroke="#ffffff" stroke-width="2.5">
-          <circle cx="150" cy="452" r="10" fill="#5f5e5a"/>
-          <circle cx="146" cy="428" r="10" fill="#2f7fd6"/>
-          <circle cx="136" cy="404" r="11" fill="#993c1d"/>
-          <circle cx="182" cy="378" r="10" fill="#16a07a"/>
-          <circle cx="164" cy="396" r="9" fill="#16a07a"/>
-          <circle cx="214" cy="224" r="11" fill="#dd5a30"/>
-          <circle cx="150" cy="272" r="10" fill="#854f0b"/>
-          <circle cx="156" cy="330" r="11" fill="#993c1d"/>
-          <circle cx="95" cy="216" r="10" fill="#d4537e"/>
-          <circle cx="132" cy="448" r="9" fill="#7f77dd"/>
+          <circle cx="150" cy="452" r="10" fill="#5f5e5a"/><circle cx="146" cy="428" r="10" fill="#2f7fd6"/>
+          <circle cx="136" cy="404" r="11" fill="#993c1d"/><circle cx="182" cy="378" r="10" fill="#16a07a"/>
+          <circle cx="164" cy="396" r="9" fill="#16a07a"/><circle cx="214" cy="224" r="11" fill="#dd5a30"/>
+          <circle cx="150" cy="272" r="10" fill="#854f0b"/><circle cx="156" cy="330" r="11" fill="#993c1d"/>
+          <circle cx="95" cy="216" r="10" fill="#d4537e"/><circle cx="132" cy="448" r="9" fill="#7f77dd"/>
         </g>
         <g font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">
           <text x="150" y="455.5">1</text><text x="146" y="431.5">2</text><text x="136" y="408" font-size="9">🏠</text>
@@ -216,22 +231,23 @@
         </g>
       </svg>
     </div>
-    <div class="maphint">💡 雙指可縮放地圖，按住可拖曳移動 ｜ ⟳ 回復原狀</div>
-    <div class="block" style="margin-top:12px">
+    <div class="maphint">💡 雙指可縮放地圖，按住可拖曳移動</div>
+    <div class="block" style="margin-top:14px">
       <h4>每日路線（顏色＝天數）</h4>
       <div id="maplegend"></div>
     </div>
   </section>
 
+  <!-- 交通 -->
   <section class="page" id="p-trans">
     <h2 class="section">✈️ 交通 & 接送</h2>
     <div class="block"><h4>✈️ 機票</h4>
       <div class="kv"><b>去程</b><span>7/2 NU302｜10:05 桃機T2 → 12:45 那霸T1</span></div>
       <div class="kv"><b>回程</b><span>7/7 CI123｜20:55 那霸T1 → 21:30 桃機T2</span></div>
     </div>
-    <div class="block"><h4>🚐 台灣機場接送</h4>
+    <div class="block"><h4>🚐 台灣接送</h4>
       <div class="kv"><b>去程</b><span>全鋒（D3815456）｜7/2 06:30 上車</span></div>
-      <div class="kv"><b>回程</b><span>肯驛（F15297723）｜依 CI123 21:30 抵達</span></div>
+      <div class="kv"><b>回程</b><span>肯驛（F15297723）｜依 CI123 抵達</span></div>
     </div>
     <div class="block"><h4>🚗 租車 Budget</h4>
       <div class="kv"><b>取車</b><span>7/2 14:30｜那霸機場店</span></div>
@@ -239,61 +255,94 @@
       <div class="kv"><b>費用</b><span class="yen">¥30,720（已折樂天券・現地付）</span></div>
       <div class="kv"><b>配備</b><span>含兒童座椅 ✓</span></div>
       <div class="mapbtn-wrap">
-        <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 還車地點導航</a>
+        <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 導航到還車處</a>
         <span class="mapcode-badge">MC: 33 002 605*15</span>
       </div>
     </div>
     <div class="block"><h4>🛋️ 機場貴賓室</h4>
-      <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span><span class="pill">華航醫師卡</span><span class="pill">JCB</span><span class="pill">小童</span>
+      <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span><span class="pill">華航醫師卡</span><span class="pill">JCB</span>
     </div>
   </section>
 
+  <!-- 住宿 -->
   <section class="page" id="p-hotel">
     <h2 class="section">🏨 住宿</h2>
     <div id="hotels"></div>
   </section>
 
+  <!-- 行李 -->
   <section class="page" id="p-pack">
     <h2 class="section">🧳 行李清單</h2>
-    <p style="font-size:11.5px;color:var(--muted);margin:0 2px 12px">點一下打勾，狀態會記住 ✓</p>
+    <p style="font-size:13px;color:var(--muted);margin:0 2px 12px">點擊打勾，狀態會自動儲存 ✓</p>
     <div id="packing"></div>
   </section>
 
+  <!-- 預算與實用連結 -->
   <section class="page" id="p-budget">
-    <h2 class="section">💰 預算總覽</h2>
-    <div class="block"><p style="font-size:11.5px;color:var(--muted);margin-bottom:8px">日圓・當地花費（4人）</p><div id="budget"></div></div>
-    <h2 class="section">📌 實用資訊</h2>
-    <div class="block" id="tips"></div>
+    <h2 class="section">💰 預算總覽 (日圓)</h2>
+    <div class="block"><div id="budget"></div></div>
+    
+    <h2 class="section">🚨 緊急與醫療資訊</h2>
+    <div class="block">
+      <div class="kv"><b>報警/救護</b><span>110 (警察) / 119 (救護・消防)</span></div>
+      <div class="kv"><b>中文熱線</b><span>050-3816-2787<br><small style="color:var(--muted)">日本觀光局 24H 醫療翻譯</small></span></div>
+      <div class="kv"><b>急診醫院</b><span>
+        • 中北部：<a href="https://www.google.com/maps/search/?api=1&query=沖縄県立北部病院" target="_blank">沖繩縣立北部醫院</a><br>
+        • 中部區：<a href="https://www.google.com/maps/search/?api=1&query=中頭病院" target="_blank">中頭醫院</a><br>
+        • 南部區：<a href="https://www.google.com/maps/search/?api=1&query=那覇市立病院" target="_blank">那霸市立醫院</a>
+      </span></div>
+      <div class="note-line" style="margin-top:10px">💡 就醫務必索取「診斷證明書」與「收據正本」以利保險理賠。</div>
+    </div>
+
+    <h2 class="section">🔗 實用官網連結</h2>
+    <div class="block" id="official-links"></div>
+
+    <button class="btn ghost full" style="margin-top:16px" onclick="window.print()">🖨️ 匯出完整行程 PDF</button>
   </section>
 
+  <!-- 攻略 -->
   <section class="page" id="p-tips">
     <h2 class="section">💡 在地攻略・心得</h2>
-    <p style="font-size:11.5px;color:var(--muted);margin:0 2px 12px">你的實戰筆記，旅途隨時查 🌊</p>
     <div id="notes"></div>
   </section>
 
-  <section class="page" id="p-note">
-    <h2 class="section">📝 我的筆記</h2>
+  <!-- 日語溝通 -->
+  <section class="page" id="p-lang">
+    <h2 class="section">🗣️ 溝通小卡</h2>
     <div class="block">
-      <h4>🗨️ 家庭留言板（即時共享）</h4>
-      <p style="font-size:11.5px;color:var(--muted);margin-bottom:9px">家人各自留言、即時顯示，不會互相覆蓋。</p>
-      <input id="boardName" class="linkin" placeholder="你的暱稱">
-      <textarea class="note" id="boardMsg" placeholder="想吃的店、想買的、提醒事項…"></textarea>
-      <button class="btn" id="boardSend" onclick="postBoard()">送出留言</button>
-      <button class="btn ghost" onclick="loadBoard()">🔄 重新整理</button>
-      <div id="boardList" style="margin-top:10px"></div>
-      <details class="apicfg">
-        <summary>⚙️ 設定 API（首次使用）</summary>
-        <div style="margin-top:8px">
-          <input id="boardApi" class="linkin" placeholder="貼上 Apps Script /exec 網址…">
-          <button class="btn ghost" onclick="saveBoardApi()">💾 儲存 API</button>
+      <div class="trans-card">
+        <div class="trans-badge">給日本店員看 / 係員へ</div>
+        <p>すみません、台湾からの観光客です。</p>
+        <p>子供が台湾発行の「障害者手帳」を持っています。</p>
+        <p>子供本人の「障害者割引チケット」と、「同伴者用のチケット」を購入することは可能でしょうか？</p>
+      </div>
+      <div class="tip-line" style="margin-top:16px">📝 中文意思：不好意思，我們是來自台灣的遊客。小孩持有台灣核發的「身心障礙證明」。請問是否可以購買小孩本人的「身障折扣票」以及「陪同者門票」呢？</div>
+    </div>
+  </section>
+
+  <!-- 留言板 -->
+  <section class="page" id="p-note">
+    <h2 class="section">📝 家庭留言板</h2>
+    <div class="block">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">家人即時共享，行程中想吃想買隨手記。</p>
+      <input id="boardName" class="linkin" placeholder="輸入你的暱稱">
+      <textarea class="note" id="boardMsg" placeholder="留言內容..."></textarea>
+      <button class="btn full" id="boardSend" onclick="postBoard()">送出留言</button>
+      <button class="btn ghost full" onclick="loadBoard()">🔄 重新整理</button>
+      <div id="boardList" style="margin-top:16px"></div>
+      
+      <details class="apicfg" style="margin-top:16px">
+        <summary>⚙️ 設定 API 網址</summary>
+        <div style="margin-top:10px">
+          <input id="boardApi" class="linkin" placeholder="貼上 Apps Script 網址...">
+          <button class="btn ghost full" onclick="saveBoardApi()">💾 儲存</button>
           <div class="saved" data-saved="boardapi"></div>
         </div>
       </details>
     </div>
   </section>
 
-  <div class="foot">本行程依「8個月嬰兒＋7歲小孩」家庭優化 🌴<br>不貪多景點・北部不換飯店</div>
+  <div class="foot">本行程依「8個月嬰兒＋7歲小孩」優化 🌴<br>大字體・高對比・極簡閱讀版</div>
 </main>
 
 <nav id="nav">
@@ -302,61 +351,63 @@
   <button data-tab="p-trans"><span class="ic">✈️</span>交通</button>
   <button data-tab="p-hotel"><span class="ic">🏨</span>住宿</button>
   <button data-tab="p-pack"><span class="ic">🧳</span>行李</button>
-  <button data-tab="p-budget"><span class="ic">💰</span>預算</button>
+  <button data-tab="p-budget"><span class="ic">💰</span>實用</button>
   <button data-tab="p-tips"><span class="ic">💡</span>攻略</button>
+  <button data-tab="p-lang"><span class="ic">🗣️</span>日語</button>
   <button data-tab="p-note"><span class="ic">📝</span>筆記</button>
 </nav>
 
 <script>
+// 在特定行程內直接加入 rain 屬性
 const days = [
   { d:"Day 1", date:"7/2", wk:"四", title:"抵達・美國村", est:"約 ¥8,500", route:null, items:[
     {t:"06:30",a:"台灣全鋒接送 → 桃機T2",det:["🚐 接送","已訂"]},
     {t:"10:05",a:"NU302 起飛 ✈️",det:["已訂"]},
     {t:"12:45",a:"抵達那霸機場（T1）",det:[]},
-    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車地點","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長","33 002 605*15"]]},
-    {t:"15:00",a:"午餐：極味屋 PARCO CITY 2F",det:["🚗 機場→PARCO 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜; 超市香檬調味料多",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9","33 339 031*33"]]},
-    {t:"16:00",a:"PARCO CITY 逛街",det:["1F藥妝便宜・嬰兒用品補貨"]},
-    {t:"17:00",a:"美國村：林檎堂蘋果派・Hoppen",det:["🚗 約20分","¥1,000"],tip:"附近2.8星扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8","33 526 450*63"]]},
+    {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車處","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長","33 002 605*15"]]},
+    {t:"15:00",a:"午餐：極味屋 PARCO CITY",det:["🚗 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜; 超市香檬調味料多",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9","33 339 031*33"]]},
+    {t:"16:00",a:"PARCO CITY 逛街",det:["1F藥妝・嬰兒用品補貨"]},
+    {t:"17:00",a:"美國村：林檎堂・Hoppen",det:["🚗 約20分","¥1,000"],tip:"附近扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8","33 526 450*63"]]},
     {t:"18:00",a:"入住 Vessel Campana",det:["🚗 5分","已訂"],map:[["Vessel Campana","https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6","33 525 322*52"]]},
-    {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行/3分","¥3,500"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9","33 526 212*11"]]},
-    {t:"20:30",a:"飯店泡湯（Terme Villa ちゅらーゆ）",det:["含房"]},
+    {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行 3分","¥3,500"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9","33 526 212*11"]]},
+    {t:"20:30",a:"飯店泡湯（ちゅらーゆ）",det:["含房"]},
   ]},
-  { d:"Day 2", date:"7/3", wk:"五", title:"沙灘・沖繩兒童王國", est:"約 ¥13,500", route:null, items:[
-    {t:"08:00",a:"早餐・美濱海灘踏浪玩沙",det:["含房"]},
+  { d:"Day 2", date:"7/3", wk:"五", title:"沙灘・兒童王國", est:"約 ¥13,500", route:null, items:[
+    {t:"08:00",a:"早餐・美濱海灘踏浪玩沙",det:["含房"], rain:"若下大雨，提早前往 <a href='https://maps.app.goo.gl/rotKTKTpjghj2F42A' target='_blank'>AEON Rycom</a> (MC: 33 530 406*45) 室內遊樂場。"},
     {t:"10:30",a:"退房",det:[]},
     {t:"12:00",a:"午餐：海族工房（海鮮）",det:["🚗 約25分","¥4,500"],map:[["海族工房","https://maps.app.goo.gl/R9BLnadQ64qZrqWu5","33 530 011*22"]]},
-    {t:"13:30",a:"沖繩兒童王國（動物園+遊樂）",det:["🚗 約10分","大人¥500"],map:[["兒童王國","https://maps.app.goo.gl/KP3msm2YVnQoDzbs5","33 561 798*58"]]},
-    {t:"16:30",a:"AEON Mall 來客夢 Rycom 補貨",det:["🚗 約20分"],map:[["AEON Rycom","https://maps.app.goo.gl/rotKTKTpjghj2F42A","33 530 406*45"]]},
-    {t:"18:00",a:"晚餐：琉球的牛（燒肉）",det:["步行","¥8,000","先訂位"],map:[["琉球的牛","https://www.google.com/maps/search/?api=1&query=琉球の牛+ライカム","33 525 860*22"]]},
-    {t:"19:30",a:"入住 雷克沖繩北谷溫泉度假村",det:["🚗 約25分","已訂"],map:[["Lequ Chatan","https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort","33 525 586*11"]]},
+    {t:"13:30",a:"沖繩兒童王國",det:["🚗 約10分","大人¥500"],map:[["兒童王國","https://maps.app.goo.gl/KP3msm2YVnQoDzbs5","33 561 798*58"]]},
+    {t:"16:30",a:"AEON Rycom 補貨",det:["🚗 約20分"],map:[["AEON Rycom","https://maps.app.goo.gl/rotKTKTpjghj2F42A","33 530 406*45"]]},
+    {t:"18:00",a:"晚餐：琉球的牛（北谷店）",det:["步行","✅ 已確認"], note:"預約姓名: Chen, Yichun | 2大1小1嬰 | 號碼: RUSMVS",map:[["琉球的牛 北谷","https://www.google.com/maps/search/?api=1&query=Ryukyu+no+Ushi+Chatan","33 525 860*22"]]},
+    {t:"19:30",a:"入住 雷克沖繩北谷度假村",det:["🚗 約25分","已訂"],map:[["Lequ Chatan","https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort","33 525 586*11"]]},
   ]},
-  { d:"Day 3", date:"7/4", wk:"六", title:"古宇利玻璃船・萬座毛", est:"約 ¥21,400", route:"🗺️ 一路北上：北谷 → 古宇利 → 名護 → 萬座毛 → 瀨良垣", items:[
-    {t:"09:00",a:"退房・出發北上",det:["🚗 沖繩道"]},
-    {t:"10:30",a:"古宇利島 玻璃船",det:["🚗 約80分","大人¥3,000"],map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6","206 312 039*17"]]},
+  { d:"Day 3", date:"7/4", wk:"六", title:"古宇利・萬座毛", est:"約 ¥21,400", route:"🗺️ 北上：北谷 → 古宇利 → 名護 → 萬座毛 → 瀨良垣", items:[
+    {t:"09:00",a:"退房・出發北上",det:["🚗 走沖繩道"]},
+    {t:"10:30",a:"古宇利島 玻璃船",det:["🚗 約80分","大人¥3,000"], rain:"可改去 <a href='https://maps.app.goo.gl/zLWotzpk2nj73nMs6' target='_blank'>名護動植物園</a> (MC: 206 689 727*11) 或 <a href='https://maps.app.goo.gl/t632N7wG98PZXXtX7' target='_blank'>部瀨名海中公園</a> (MC: 206 442 075*11)。", map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6","206 312 039*17"]]},
     {t:"12:00",a:"午餐：Poke Bowls",det:["步行","¥3,500"],map:[["Poke Bowls","https://maps.app.goo.gl/ymNNktqFZMBWehtd6"]]},
     {t:"14:00",a:"名護超市補貨",det:["🚗 約30分","¥3,000"],map:[["MaxValu Nago","https://maps.app.goo.gl/dq8aZ1fjBj83Wq65A","206 688 674*44"]]},
     {t:"15:30",a:"萬座毛（絕景海崖）",det:["🚗 約30分","¥100"],map:[["萬座毛","https://maps.app.goo.gl/hBGHvrEpenAV5Ndb6","206 312 039*17"]]},
     {t:"17:00",a:"入住 BEB5 瀨良垣",det:["🚗 約10分","已訂"],map:[["BEB5 瀨良垣","https://maps.app.goo.gl/13mbL9xwk1pMAgCL8","206 314 246*00"]]},
   ]},
-  { d:"Day 4", date:"7/5", wk:"日", title:"名護鳳梨園・名護動物園", est:"約 ¥18,400", route:null, items:[
-    {t:"10:00",a:"早餐：潛水員牛排",det:["🚗 約30分","¥4,000"],map:[["潛水員牛排","https://maps.app.goo.gl/FRqXRjScoUZZsB6g8"]]},
-    {t:"11:30",a:"名護鳳梨園",det:["🚗 約20分","大人¥1,500"],map:[["名護鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A","206 716 467*85"]]},
-    {t:"15:00",a:"名護動物園 ネオパーク",det:["🚗 約10分","大人¥1,600"],map:[["ネオパーク","https://maps.app.goo.gl/zLWotzpk2nj73nMs6","206 689 727*11"]]},
+  { d:"Day 4", date:"7/5", wk:"日", title:"鳳梨園・動物園", est:"約 ¥18,400", route:null, items:[
+    {t:"10:00",a:"早餐：潛水員牛排",det:["🚗 約30分","¥4,000"],map:[["牛排","https://maps.app.goo.gl/FRqXRjScoUZZsB6g8"]]},
+    {t:"11:30",a:"名護鳳梨園",det:["🚗 約20分","大人¥1,500"],map:[["鳳梨園","https://maps.app.goo.gl/BhLAkC5ir7zXEgV4A","206 716 467*85"]]},
+    {t:"15:00",a:"名護動植物園 Neo Park",det:["🚗 約10分","大人¥1,600"],map:[["動植物園","https://maps.app.goo.gl/zLWotzpk2nj73nMs6","206 689 727*11"]]},
     {t:"17:30",a:"返回 BEB5・休息",det:["🚗 約30分"]},
   ]},
   { d:"Day 5", date:"7/6", wk:"一", title:"美麗海水族館", est:"約 ¥14,000", route:null, items:[
-    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180"],note:"⚠️ 停車停 P7！",map:[["美麗海水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館","553 075 797*77"]]},
-    {t:"11:30",a:"¥1,000 專屬50分鐘用餐區",det:["館內","¥1,000×人數"]},
-    {t:"13:00",a:"免費區：海牛/海豚/海龜餵食",det:["步行","免門票"]},
+    {t:"09:00",a:"美麗海水族館",det:["🚗 約50分","大人¥2,180"],note:"⚠️ 記得停在 P7 停車場！",map:[["水族館","https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館","553 075 797*77"]]},
+    {t:"11:30",a:"¥1,000 專屬50分用餐區",det:["館內","¥1,000×人數"]},
+    {t:"13:00",a:"免費區：海牛/海豚/海龜",det:["步行","免門票"]},
     {t:"17:30",a:"返回 BEB5・晚餐",det:["🚗"]},
   ]},
-  { d:"Day 6", date:"7/7", wk:"二", title:"國際通・好市多・回程", est:"約 ¥21,000", route:null, items:[
+  { d:"Day 6", date:"7/7", wk:"二", title:"國際通・回程", est:"約 ¥21,000", route:null, items:[
     {t:"10:00",a:"退房（11:00前）",det:[]},
-    {t:"11:30",a:"國際通 → 牧志市場",det:["🚗 約70分","午餐+買物 ¥10,000"],map:[["牧志公設市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場","33 157 264*62"]]},
-    {t:"14:30",a:"好市多 南風原店 補貨",det:["🚗 約25分","¥8,000"],map:[["Costco 南風原","https://www.google.com/maps/search/?api=1&query=コストコ南風原倉庫店","33 133 084*11"]]},
-    {t:"17:30",a:"加滿油・前往 Budget 還車",det:["🚗 約20分","油費"]},
+    {t:"11:30",a:"國際通 → 牧志市場",det:["🚗 約70分","買物 ¥10,000"],map:[["市場","https://www.google.com/maps/search/?api=1&query=牧志公設市場","33 157 264*62"]]},
+    {t:"14:30",a:"好市多 南風原店",det:["🚗 約25分","¥8,000"],map:[["Costco","https://www.google.com/maps/search/?api=1&query=コストコ南風原倉庫店","33 133 084*11"]]},
+    {t:"17:30",a:"加滿油・前往 Budget",det:["🚗 約20分","油費"]},
     {t:"18:30",a:"Budget 那霸機場店還車",det:["接駁→機場"]},
-    {t:"20:55",a:"CI123 起飛 → 21:30 桃機T2",det:["✈️","肯驛接送","已訂"]},
+    {t:"20:55",a:"CI123 起飛 → 21:30 桃機",det:["✈️","已訂"]},
   ]},
 ];
 
@@ -367,40 +418,46 @@ const mapLegend = [
 ];
 
 const hotels = [
-  {n:"Vessel Hotel Campana",night:"7/2（1晚）",addr:"北谷町美濱9番地22",tag:"館內溫泉 ♨️",map:"https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6", mc:"33 525 322*52"},
-  {n:"雷克沖繩北谷溫泉度假村",night:"7/3（1晚）",addr:"北谷町美濱2-34",tag:"館內溫泉 ♨️",map:"https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort", mc:"33 525 586*11"},
+  {n:"Vessel Hotel Campana",night:"7/2（1晚）",addr:"北谷町美濱9番地22",tag:"溫泉 ♨️",map:"https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6", mc:"33 525 322*52"},
+  {n:"Lequ 沖繩北谷溫泉度假村",night:"7/3（1晚）",addr:"北谷町美濱2-34",tag:"溫泉 ♨️",map:"https://www.google.com/maps/search/?api=1&query=Lequ+Okinawa+Chatan+Spa+Resort", mc:"33 525 586*11"},
   {n:"星野 BEB5 沖繩瀨良垣",night:"7/4–7/6（3晚）",addr:"恩納村瀨良垣1860-4",tag:"免費停車 🅿️",map:"https://maps.app.goo.gl/13mbL9xwk1pMAgCL8", mc:"206 314 246*00"},
 ];
 
 const packing = [
-  {h:"📄 證件/金錢/通訊",items:["護照","機票/訂房憑證","租車憑證","駕照日文譯本＋台灣駕照（缺一不可！）","信用卡（玉山/新光/華航/JCB）","日幣現金","旅平險/醫療險保單","eSIM/SIM 卡（出發前先設定）"]},
-  {h:"👶 嬰兒（8個月）",items:["尿布","濕紙巾","副食品/奶粉","奶瓶","揹巾","輕便推車","防曬","口水巾","常用藥"]},
-  {h:"🧒 小孩（7歲）",items:["替換衣物","泳衣","防曬","帽子","玩沙工具","暈車藥","零食","平板/玩具"]},
-  {h:"🎒 共同",items:["薄外套（冷氣強）","雨具","保溫瓶","行動電源","轉接頭（日本A型）","藥品（腸胃/感冒/退燒/OK繃）","泳具"]},
+  {h:"📄 證件/金錢/通訊",items:["護照","機票/訂房憑證","租車憑證","駕照日文譯本＋台灣駕照（缺一不可！）","信用卡（玉山/新光/華航/JCB）","日幣現金","保單","eSIM/SIM 卡"]},
+  {h:"👶 嬰兒（8個月）",items:["尿布/濕紙巾","副食品/奶粉/奶瓶","揹巾/輕便推車","防曬/口水巾"]},
+  {h:"🧒 小孩（7歲）",items:["替換衣物/泳衣","帽子/防曬","玩沙工具","平板/玩具/零食"]},
+  {h:"🎒 共同裝備",items:["薄外套（冷氣強）","雨具","保溫瓶","行動電源","轉接頭（日本A型）"]},
+  {h:"💊 備用藥品 (必備)",items:["兒童退燒藥水 / 塞劑","成人退燒 / 止痛藥 (普拿疼/布洛芬)","綜合感冒藥 (咳嗽/流鼻水)","腸胃藥 (止瀉/胃藥/益生菌)","外用 (OK繃/蚊蟲藥膏/外傷藥膏)","暈車藥 (兒童/成人)","耳溫槍 (常忘記帶！)"]},
 ];
 
 const budget = [
-  {k:"租車",v:"¥30,720",n:"已付（現地）"},{k:"住宿 5晚",v:"待填",n:"參考 ¥110,000–140,000"},
-  {k:"油費＋高速過路",v:"¥12,000",n:"自駕6天"},{k:"景點門票",v:"¥17,000",n:"兒童王國/玻璃船/鳳梨園/動物園/美麗海"},
-  {k:"餐食 6天",v:"¥55,000",n:"親子家庭 ¥8–10k/天"},{k:"伴手禮/購物",v:"¥40,000",n:"國際通・好市多・AEON"},
-  {k:"雜支",v:"¥8,000",n:"停車/門票零頭/餵食體驗"},
+  {k:"租車",v:"¥30,720",n:"已付"},{k:"住宿 5晚",v:"待填",n:"參考 ¥110,000–140,000"},
+  {k:"油費＋高速過路",v:"¥12,000",n:"預估"},{k:"景點門票",v:"¥17,000",n:"兒童王國/玻璃船/鳳梨園等"},
+  {k:"餐食 6天",v:"¥55,000",n:"¥8–10k/天"},{k:"購物伴手禮",v:"¥40,000",n:"好市多/AEON/國際通"},
+  {k:"雜支",v:"¥8,000",n:"停車/零頭"},
 ];
 const budgetTotals = [{k:"當地小計",v:"約 ¥162,000",n:"不含住宿"},{k:"含住宿總計",v:"約 ¥280,000–310,000",n:"約台幣 6–6.7 萬"}];
 
-const tips = [
-  ["📶 網路","建議買 eSIM／SIM 卡；出發前先設定，落地即可導航"],
-  ["🛡️ 保險","務必投保旅平＋醫療＋不便險；租車現場已含免責＋NOC"],
-  ["🚗 駕車","靠左行駛・走人工收費道・美麗海停 P7"],
+// 新增官方網站連結
+const officialLinks = [
+  {n: "美麗海水族館", url: "https://churaumi.okinawa/tc/"},
+  {n: "PARCO CITY (樓層指南)", url: "https://www.parcocity.jp/floorguide/"},
+  {n: "沖繩兒童王國", url: "https://www.okzm.jp/information-cht/"},
+  {n: "名護鳳梨園", url: "https://www.nagopine.com/index.html"},
+  {n: "名護動植物園", url: "https://www.neopark.co.jp/"},
+  {n: "日本氣象廳 (潮汐表)", url: "https://s.n-kishou.co.jp/w/sp/tide/tide_pref.html?f=47"},
 ];
 
 const notes = [
-  {h:"🛍️ 伴手禮・哪裡買划算",items:["シークヮーサー（香檬）調味料：PARCO超市超多","福砂屋：琉貿百貨1樓有黑糖+原味(可退稅)","蝦餅：牧志市場/市場本通最便宜","入關前先吃飽！管制區內東西少"]},
-  {h:"🍽️ 美食・餐廳",items:["市場本通路線：JEF苦瓜漢堡(炸雞趁熱吃)、福助玉子燒飯糰","古宇利蝦蝦飯：可吃，不用點牛肉版","PARCO CITY 吉伊卡哇餐廳：現場看時段候位"]},
-  {h:"🐠 景點・體驗",items:["美麗海：花¥1,000有專屬50分鐘用餐區，貼玻璃看海洋生物不用人擠人","麵包超人控：美國村附近2.8星扭蛋店有麵包超人磁鐵機"]},
+  {h:"🍼 育兒・哺乳室攻略",items:["超讚育兒室：PARCO CITY、AEON、美麗海水族館，設備頂級。","戶外景點：萬座毛、古宇利島哺乳不便，建議在車上先換好尿布。","App：可下載「Mamaro」尋找附近獨立微型哺乳室。"]},
+  {h:"🛍️ 伴手禮・購買指南",items:["香檬調味料：PARCO超市超多。","福砂屋：琉貿百貨1樓有黑糖+原味(可退稅)。","蝦餅：牧志市場/市場本通最便宜。","機場：入關前先吃飽！管制區內沒便利商店。"]},
+  {h:"🍽️ 必吃美食",items:["市場本通：JEF苦瓜漢堡(趁熱吃)、福助玉子燒飯糰。","古宇利：蝦蝦飯可吃，不用點牛肉版。","PARCO CITY：吉伊卡哇餐廳現場看時段候位。"]},
+  {h:"🐠 景點・體驗",items:["美麗海：花¥1,000有專屬50分用餐區，貼玻璃看魚不用人擠人。","美國村附近：2.8星扭蛋店有麵包超人磁鐵機。"]},
 ];
 
-function isPaid(s){return s==="已訂"||s==="已付"}
-function detHtml(det){return det.map(d=>isPaid(d)?`<span class="badge-paid">✅ ${d}</span>`:`<span>${d}</span>`).join("");}
+function isPaid(s){return s==="已訂"||s==="已付"||s==="✅ 已確認"}
+function detHtml(det){return det.map(d=>isPaid(d)?`<span class="badge-paid">${d}</span>`:`<span class="pill">${d}</span>`).join("");}
 
 function buildDays(){
   const tabs=document.getElementById("daytabs"),bodies=document.getElementById("daybodies");
@@ -412,7 +469,7 @@ function buildDays(){
     
     const body=document.createElement("div");
     body.className="daybody"+(i===0?" active":"");
-    let html=`<div class="dayhead"><h3>${day.d}｜${day.date}（${day.wk}）${day.title}</h3><div class="est">💰 預估 ${day.est}</div></div>`;
+    let html=`<div class="dayhead"><h3>${day.d}｜${day.date}（${day.wk}）<br>${day.title}</h3><div class="est">💰 預估花費 ${day.est}</div></div>`;
     if(day.route)html+=`<div class="route">${day.route}</div>`;
     html+=`<div class="tl">`;
     day.items.forEach(it=>{
@@ -420,13 +477,14 @@ function buildDays(){
       if(it.det&&it.det.length)html+=`<div class="det">${detHtml(it.det)}</div>`;
       if(it.map){
         html+=`<div class="mapbtn-wrap">` + it.map.map((m,idx)=>{
-          let btn = `<a class="mapbtn${idx>0?' alt':''}" target="_blank" rel="noopener" href="${m[1]}">📍 ${m[0]}</a>`;
+          let btn = `<a class="mapbtn${idx>0?' alt':''}" target="_blank" href="${m[1]}">📍 ${m[0]}</a>`;
           if(m[2]) btn += `<span class="mapcode-badge">MC: ${m[2]}</span>`;
           return btn;
         }).join("") + `</div>`;
       }
+      if(it.rain)html+=`<div class="rain-line">☔ 雨備：${it.rain}</div>`;
       if(it.note)html+=`<div class="note-line">💡 ${it.note}</div>`;
-      if(it.tip)html+=`<div class="tip-line">📝 攻略：${it.tip}</div>`;
+      if(it.tip)html+=`<div class="tip-line">📝 ${it.tip}</div>`;
       html+=`</div></div>`;
     });
     html+=`</div>`;
@@ -443,9 +501,9 @@ function buildHotels(){
     <div class="block hotel"><h4>🏨 ${h.n}</h4>
       <div class="kv"><b>入住</b><span>${h.night}</span></div>
       <div class="kv"><b>地址</b><span>${h.addr}</span></div>
-      <span class="pill">${h.tag}</span><br>
-      <div class="mapbtn-wrap" style="margin-top:8px">
-        <a class="mapbtn" target="_blank" rel="noopener" href="${h.map}">📍 開啟導航</a>
+      <span class="pill" style="margin:6px 0">${h.tag}</span><br>
+      <div class="mapbtn-wrap">
+        <a class="mapbtn" target="_blank" href="${h.map}">📍 開啟導航</a>
         ${h.mc ? `<span class="mapcode-badge">MC: ${h.mc}</span>` : ""}
       </div>
     </div>`).join("");
@@ -463,9 +521,13 @@ function buildPacking(){
 }
 function buildBudget(){
   let h=budget.map(b=>`<div class="budget-row"><span>${b.k}<small>${b.n}</small></span><span class="yen">${b.v}</span></div>`).join("");
-  h+=budgetTotals.map(b=>`<div class="budget-row total"><span>${b.k}<small style="font-weight:400">${b.n}</small></span><span class="yen">${b.v}</span></div>`).join("");
+  h+=budgetTotals.map(b=>`<div class="budget-row total"><span>${b.k}<small style="font-weight:500">${b.n}</small></span><span class="yen">${b.v}</span></div>`).join("");
   document.getElementById("budget").innerHTML=h;
-  document.getElementById("tips").innerHTML=tips.map(t=>`<div class="kv"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("");
+  
+  // 渲染官網連結
+  document.getElementById("official-links").innerHTML = officialLinks.map(l=>`
+    <div class="kv" style="align-items:center;"><b>🌐 網站</b><a href="${l.url}" target="_blank">${l.n}</a></div>
+  `).join("");
 }
 function buildNotes(){
   document.getElementById("notes").innerHTML=notes.map(g=>`
@@ -475,8 +537,8 @@ function buildNotes(){
 }
 function buildLegend(){
   document.getElementById("maplegend").innerHTML=mapLegend.map(l=>
-    `<div style="display:flex;align-items:center;gap:10px;font-size:12px;padding:5px 0">
-      <span style="flex:0 0 22px;height:5px;border-radius:3px;background:${l[0]}"></span>
+    `<div style="display:flex;align-items:center;gap:12px;font-size:14px;padding:6px 0;font-weight:500">
+      <span style="flex:0 0 24px;height:6px;border-radius:4px;background:${l[0]}"></span>
       <span>${l[1]}</span></div>`).join("");
 }
 
@@ -493,13 +555,12 @@ function clampVB(){
   if(vb.x+vb.w>440)vb.x=440-vb.w; if(vb.y+vb.h>600)vb.y=600-vb.h;
 }
 
-// 實作雙指縮放與拖曳 (Pinch-to-Zoom & Drag)
+// 實作雙指縮放與拖曳 (Pinch-to-Zoom)
 function initMapDrag(){
   const s=document.getElementById("routeMap");if(!s)return;
   let drag=false,px,py;
   let initDist=0, initW=0;
 
-  // 滑鼠事件
   s.addEventListener("pointerdown",e=>{
     drag=true;px=e.clientX;py=e.clientY;
     if(e.pointerType !== 'touch') s.setPointerCapture(e.pointerId);
@@ -513,7 +574,6 @@ function initMapDrag(){
   s.addEventListener("pointerup",()=>drag=false);
   s.addEventListener("pointercancel",()=>drag=false);
 
-  // 觸控雙指縮放事件
   s.addEventListener("touchstart", e => {
     if(e.touches.length === 2) {
       drag = false;
@@ -556,6 +616,9 @@ document.querySelectorAll("#nav button").forEach(b=>{
     document.getElementById(b.dataset.tab).classList.add("active");
     if(b.dataset.tab==="p-note"&&boardApi())loadBoard();
     window.scrollTo({top:0,behavior:"smooth"});
+    
+    // 如果點到較邊緣的按鈕，讓導航列自動捲動對齊
+    b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   };
 });
 
@@ -567,13 +630,11 @@ function initLinks(){
 const BOARD_API="";
 function boardApi(){return (localStorage.getItem("okinote_boardapi")||BOARD_API||"").trim();}
 
-// 正確的字元跳脫函式，避免報錯
 function esc(s){
-  const map = {"&":"&","<":"<",">":">","\"":"&quot;","'":"&#39;"};
+  const map = {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"};
   return String(s).replace(/[&<>"']/g, c => map[c]);
 }
 
-// 修正 iOS Safari 日期解析
 function fmtTime(t){
   let d = new Date(t);
   if (isNaN(d) && typeof t === 'string') {
@@ -592,18 +653,18 @@ function saveBoardApi(){
 async function loadBoard(){
   const box=document.getElementById("boardList");if(!box)return;
   const api=boardApi();
-  if(!api){box.innerHTML='<div class="boardstat">尚未設定留言板 API。請展開下方「⚙️ 設定 API」進行操作。</div>';return;}
+  if(!api){box.innerHTML='<div class="boardstat">尚未設定 API 網址，請展開下方設定。</div>';return;}
   box.innerHTML='<div class="boardstat">讀取中…</div>';
   try{
     const r=await fetch(api,{method:"GET"});
     const d=await r.json();
     if(!d.ok)throw new Error("server");
-    if(!d.rows||!d.rows.length){box.innerHTML='<div class="boardstat">還沒有留言，搶頭香！</div>';return;}
+    if(!d.rows||!d.rows.length){box.innerHTML='<div class="boardstat">目前無留言</div>';return;}
     box.innerHTML=d.rows.slice().reverse().map(x=>`<div class="msg"><div class="msgh"><b>${esc(x.name||"匿名")}</b><span>${fmtTime(x.time)}</span></div><div>${esc(x.msg||"")}</div></div>`).join("");
-  }catch(e){box.innerHTML='<div class="boardstat">讀取失敗，請確認 API 網址是否正確。</div>';}
+  }catch(e){box.innerHTML='<div class="boardstat" style="color:var(--coral)">讀取失敗，請確認 API 網址是否正確。</div>';}
 }
 async function postBoard(){
-  const api=boardApi();if(!api){alert("請先在「⚙️ 設定 API」貼上並儲存 Apps Script 網址");return;}
+  const api=boardApi();if(!api){alert("請先在下方「設定 API」貼上 Apps Script 網址");return;}
   const name=(document.getElementById("boardName").value||"匿名").trim();
   const msg=(document.getElementById("boardMsg").value||"").trim();
   if(!msg){alert("請輸入留言內容");return;}
@@ -613,7 +674,7 @@ async function postBoard(){
     await fetch(api,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({name:name,msg:msg})});
     document.getElementById("boardMsg").value="";
     await loadBoard();
-  }catch(e){alert("送出失敗，請確認網路與 API 設定");}
+  }catch(e){alert("送出失敗，請確認網路連線。");}
   btn.disabled=false;btn.textContent="送出留言";
 }
 
