@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/local_florist/default/192px.svg">
 <title>沖繩親子 6天5夜 🌺</title>
 <style>
-  /* 簡潔清晰版配色 - 提高對比、降低戶外反光干擾 */
+  /* 簡潔清晰版配色 */
   :root{
     --sea:#0a8ea0; --sea-d:#055a66; --sand:#f4f7f8; --coral:#e65c30;
     --sky:#e7f5f7; --ink:#111827; --muted:#4b5563; --card:#ffffff;
@@ -23,10 +23,9 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
     background:var(--sand);
     color:var(--ink); padding-bottom:86px; line-height:1.6;
-    -webkit-font-smoothing:antialiased; font-size:15px; /* 基礎字體放大 */
+    -webkit-font-smoothing:antialiased; font-size:15px; 
   }
   
-  /* 頂部 Header - 簡化漸層 */
   header{
     position:sticky; top:0; z-index:50;
     background:var(--sea);
@@ -52,7 +51,6 @@
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
   h2.section{font-size:18px;margin:10px 2px 14px;display:flex;align-items:center;gap:7px;color:var(--sea-d);font-weight:700}
   
-  /* 日期標籤 - 更大更好點 */
   .daytabs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;-ms-overflow-style:none;}
   .daytabs::-webkit-scrollbar{display:none}
   .daytab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);border-radius:12px;
@@ -70,31 +68,27 @@
   .dayhead .est{font-size:13px;opacity:0.9;}
   .route{background:#fff;border:1.5px dashed var(--coral);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--coral);margin-bottom:16px; font-weight:600;}
   
-  /* 時間軸 */
   .tl{position:relative;padding-left:22px}
   .tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:3px;background:var(--line)}
   .item{position:relative;margin-bottom:16px}
   .item::before{content:"";position:absolute;left:-20.5px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--sea);border:3px solid #fff;}
   
-  /* 卡片設計 - 取消陰影，實色邊框防眩光 */
   .card, .block{background:var(--card);border-radius:12px;padding:14px 16px;border:1.5px solid var(--line); margin-bottom:14px;}
   .time{font-size:13.5px;font-weight:700;color:var(--sea-d);background:var(--sky);display:inline-block;padding:3px 10px;border-radius:6px;margin-bottom:8px}
   .act{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)}
   .det{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--muted);margin-bottom:10px}
   .badge-paid{color:var(--green);font-weight:700}
   
-  /* 按鈕加大 */
   .mapcode-badge{font-size:12px;color:var(--sea-d);background:var(--sky);padding:4px 8px;border-radius:6px;font-family:monospace;font-weight:600}
   .mapbtn-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0}
   .mapbtn{display:inline-flex;align-items:center;gap:5px;background:var(--sea);color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;}
   .mapbtn:active{transform:scale(.96)}
   .mapbtn.alt{background:var(--coral)}
   
-  /* 提示行 */
   .note-line, .tip-line, .rain-line{font-size:13px;border-radius:8px;padding:8px 10px;margin-top:8px;line-height:1.5}
   .note-line{color:#9a3412;background:#ffedd5;border-left:4px solid #f97316}
   .tip-line{color:#115e59;background:#ccfbf1;border-left:4px solid #14b8a6}
-  .rain-line{color:#1e3a8a;background:#dbeafe;border-left:4px solid #3b82f6; font-weight:600;} /* 新增雨備樣式 */
+  .rain-line{color:#1e3a8a;background:#dbeafe;border-left:4px solid #3b82f6; font-weight:600;}
   .rain-line a{color:inherit; text-decoration:underline; text-underline-offset:2px;}
   
   .block h4{font-size:16px;color:var(--sea-d);margin-bottom:10px;display:flex;align-items:center;gap:6px}
@@ -118,7 +112,6 @@
   .budget-row small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
   .budget-row.total{font-weight:700;color:var(--sea-d);font-size:16px;border:0;padding-top:14px}
   
-  /* 地圖 */
   .mapwrap{position:relative;background:#fff;border-radius:12px;padding:8px;border:1.5px solid var(--line);overflow:hidden}
   #routeMap{width:100%;height:auto;display:block;touch-action:none;cursor:grab}
   #routeMap:active{cursor:grabbing}
@@ -126,7 +119,6 @@
   .zoomctl button{width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.9);color:var(--ink);font-size:20px;font-weight:700;cursor:pointer;}
   .maphint{font-size:12.5px;color:var(--muted);text-align:center;margin:10px 2px 0}
   
-  /* 底部導航列 */
   nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#ffffff;border-top:1.5px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
   nav::-webkit-scrollbar{display:none;}
   nav button{flex:0 0 72px;background:none;border:0;padding:10px 2px 8px;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer; font-weight:600;}
@@ -135,12 +127,10 @@
   nav button.active .ic{transform:translateY(-2px)}
   .foot{text-align:center;font-size:12px;color:var(--muted);padding:14px 10px 10px}
 
-  /* 翻譯/溝通大字卡 */
   .trans-card{background:#fff;border:2px solid var(--sea);border-radius:16px;padding:24px 20px;text-align:center;}
   .trans-card p{font-size:18px;line-height:1.6;font-weight:600;color:var(--ink);margin-bottom:20px;text-align:left;}
   .trans-badge{display:inline-block;background:var(--sea);color:#fff;padding:6px 14px;border-radius:20px;font-size:14px;font-weight:700;margin-bottom:16px;}
 
-  /* 留言板/表單 */
   .btn{display:inline-flex;align-items:center;gap:6px;background:var(--sea);color:#fff;border:none;font-size:14.5px;font-weight:600;padding:12px 16px;border-radius:8px;cursor:pointer;margin:4px 6px 4px 0}
   .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
   .btn.full{width:100%; justify-content:center; margin:8px 0 0 0}
@@ -169,13 +159,11 @@
 </header>
 
 <main>
-  <!-- 行程 -->
   <section class="page active" id="p-days">
     <div class="daytabs" id="daytabs"></div>
     <div id="daybodies"></div>
   </section>
 
-  <!-- 地圖 -->
   <section class="page" id="p-map">
     <h2 class="section">🗺️ 全島行車路線圖</h2>
     <div class="mapwrap">
@@ -240,26 +228,39 @@
 
   <!-- 交通 -->
   <section class="page" id="p-trans">
-    <h2 class="section">✈️ 交通 & 接送</h2>
-    <div class="block"><h4>✈️ 機票</h4>
-      <div class="kv"><b>去程</b><span>7/2 NU302｜10:05 桃機T2 → 12:45 那霸T1</span></div>
-      <div class="kv"><b>回程</b><span>7/7 CI123｜20:55 那霸T1 → 21:30 桃機T2</span></div>
+    <h2 class="section">✈️ 去程航班 (NU 302)</h2>
+    <div class="block">
+      <div class="kv"><b>時間</b><span>7/2 10:05 桃機T2 → 12:45 那霸T1</span></div>
+      <div class="kv"><b>代號</b><span style="font-family:monospace;font-weight:700;color:var(--sea-d)">AO54QA</span></div>
+      <div class="kv"><b>座位</b><span>13A、13B、13C</span></div>
+      <div class="kv"><b>餐點</b><span>簡餐<br><small style="color:var(--muted)">💡 抵達已近下午，請在貴賓室先吃飽！</small></span></div>
+      <div class="kv"><b>行李</b><span>嬰兒：1件23kg (推車/汽座免費託運)<br>其他：2件23kg/人<br><b>共計：可託運 7 件</b></span></div>
+      <div class="kv"><b>會員</b><span><a href="https://jallogin.jal.co.jp/contents/login?AUTH_TYPE=AUTH_THREEKEY_LOW&SITE_ID=co&AUTHENTICATED=http%3A%2F%2Fjallogin.jal.co.jp%2Fsso%2FInternalAuthoriEndpoint%2F%3Facr_values%3D4%26design%3DJL001N%26redirect_uri%3Dhttps%253A%252F%252Fwww121.jal.co.jp%252FJmbWeb%252FSR%252FJMBmemberTop_en.do%26state%3DWTI5MWJuUnllVDFrU0dNOSZiR0Z1WjNWaFoyVTlaVzFvTUdSM1BUMD0%253D%26lang%3Dzhtw%26client_name%3DJMBECO%26client_id%3DJMECjrokyd&MESSAGE_AUTH=CDBA0CguYyoFge9Y3MTIOA%3D%3D" target="_blank">JAL JMB (412897755)</a></span></div>
     </div>
-    <div class="block"><h4>🚐 台灣接送</h4>
-      <div class="kv"><b>去程</b><span>全鋒（D3815456）｜7/2 06:30 上車</span></div>
-      <div class="kv"><b>回程</b><span>肯驛（F15297723）｜依 CI123 抵達</span></div>
+
+    <h2 class="section">✈️ 回程航班 (CI 123)</h2>
+    <div class="block">
+      <div class="kv"><b>時間</b><span>7/7 20:55 那霸T1 → 21:30 桃機T2</span></div>
+      <div class="kv"><b>代號</b><span style="font-family:monospace;font-weight:700;color:var(--sea-d)">AO54QA</span></div>
+      <div class="kv"><b>座位</b><span style="color:var(--coral);font-weight:600">尚未選擇！</span></div>
+      <div class="kv"><b>餐點</b><span style="color:var(--coral);font-weight:600">尚未預定！<br><small style="color:var(--muted)">⚠️ 記得去訂兒童餐及嬰兒餐</small></span></div>
+      <div class="kv"><b>行李</b><span>每人：1件23kg<br>貴賓：額外 1 件<br><b>共計：可託運 5 件</b></span></div>
+      <div class="kv"><b>會員</b><span><a href="https://dynasty-flyer.china-airlines.com/member/auth/login?clientType=part-chl&redirectTo=https://www.china-airlines.com/tw/zh/" target="_blank">華航華夏 (WD9087344)</a></span></div>
     </div>
-    <div class="block"><h4>🚗 租車 Budget</h4>
-      <div class="kv"><b>取車</b><span>7/2 14:30｜那霸機場店</span></div>
-      <div class="kv"><b>還車</b><span>7/7 18:30｜豐見城市瀨長3-2</span></div>
-      <div class="kv"><b>費用</b><span class="yen">¥30,720（已折樂天券・現地付）</span></div>
-      <div class="kv"><b>配備</b><span>含兒童座椅 ✓</span></div>
-      <div class="mapbtn-wrap">
+
+    <h2 class="section">🚐 台灣接送 / 🚗 租車</h2>
+    <div class="block">
+      <div class="kv"><b>去接送</b><span>全鋒（D3815456）｜7/2 06:30 上車</span></div>
+      <div class="kv"><b>回接送</b><span>肯驛（F15297723）｜依 CI123 抵達</span></div>
+      <hr style="border:0;border-top:1px dashed var(--line);margin:12px 0">
+      <div class="kv"><b>Budget</b><span>7/2 14:30 取車 ➔ 7/7 18:30 還車<br>¥30,720 (已折樂天券 / 現地付 / 含汽座)</span></div>
+      <div class="mapbtn-wrap" style="margin-top:10px">
         <a class="mapbtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長">📍 導航到還車處</a>
         <span class="mapcode-badge">MC: 33 002 605*15</span>
       </div>
     </div>
-    <div class="block"><h4>🛋️ 機場貴賓室</h4>
+    
+    <div class="block"><h4>🛋️ 桃園機場貴賓室卡別</h4>
       <span class="pill">玉山 U.First</span><span class="pill">新光 PP卡</span><span class="pill">華航醫師卡</span><span class="pill">JCB</span>
     </div>
   </section>
@@ -358,16 +359,14 @@
 </nav>
 
 <script>
-// 在特定行程內直接加入 rain 屬性
 const days = [
   { d:"Day 1", date:"7/2", wk:"四", title:"抵達・美國村", est:"約 ¥8,500", route:null, items:[
-    {t:"06:30",a:"台灣全鋒接送 → 桃機T2",det:["🚐 接送","已訂"]},
-    {t:"10:05",a:"NU302 起飛 ✈️",det:["已訂"]},
     {t:"12:45",a:"抵達那霸機場（T1）",det:[]},
     {t:"14:30",a:"Budget 取車（瀨長3-2）",det:["🚗 機場接駁","已付"],map:[["取車處","https://www.google.com/maps/search/?api=1&query=Budget+Rent+a+Car+那覇空港+豊見城瀬長","33 002 605*15"]]},
     {t:"15:00",a:"午餐：極味屋 PARCO CITY",det:["🚗 約20分","¥4,000"],tip:"PARCO 1F藥妝便宜; 超市香檬調味料多",map:[["極味屋","https://maps.app.goo.gl/BVt84oaSwsedLTYx9","33 339 031*33"]]},
     {t:"16:00",a:"PARCO CITY 逛街",det:["1F藥妝・嬰兒用品補貨"]},
-    {t:"17:00",a:"美國村：林檎堂・Hoppen",det:["🚗 約20分","¥1,000"],tip:"附近扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8","33 526 450*63"]]},
+    {t:"16:30",a:"Hoppen (ほっぺん)",det:["🚗 離開PARCO順路","浦添市"],map:[["Hoppen (浦添)","https://www.google.com/maps/place/hoppepan/@26.2371513,127.7042483,19z/data=!3m1!4b1!4m6!3m5!1s0x34e56ba8e635f46f:0x84b4d2a52c73c37!8m2!3d26.2371501!4d127.704892!16s%2Fg%2F12qfy7gnw?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D"]]},
+    {t:"17:15",a:"美國村：林檎堂蘋果派",det:["🚗 約25分","¥1,000"],tip:"附近扭蛋店有麵包超人磁鐵機",map:[["林檎堂","https://maps.app.goo.gl/ytHJ6VRstHud3pfP8","33 526 450*63"]]},
     {t:"18:00",a:"入住 Vessel Campana",det:["🚗 5分","已訂"],map:[["Vessel Campana","https://maps.app.goo.gl/1nDfw9G7mtHcv2BS6","33 525 322*52"]]},
     {t:"18:30",a:"AEON北谷 逛大創/超市晚餐",det:["步行 3分","¥3,500"],map:[["AEON北谷","https://maps.app.goo.gl/2uorNrnSMgf3MKxn9","33 526 212*11"]]},
     {t:"20:30",a:"飯店泡湯（ちゅらーゆ）",det:["含房"]},
@@ -383,7 +382,7 @@ const days = [
   ]},
   { d:"Day 3", date:"7/4", wk:"六", title:"古宇利・萬座毛", est:"約 ¥21,400", route:"🗺️ 北上：北谷 → 古宇利 → 名護 → 萬座毛 → 瀨良垣", items:[
     {t:"09:00",a:"退房・出發北上",det:["🚗 走沖繩道"]},
-    {t:"10:30",a:"古宇利島 玻璃船",det:["🚗 約80分","大人¥3,000"], rain:"可改去 <a href='https://maps.app.goo.gl/zLWotzpk2nj73nMs6' target='_blank'>名護動植物園</a> (MC: 206 689 727*11) 或 <a href='https://maps.app.goo.gl/t632N7wG98PZXXtX7' target='_blank'>部瀨名海中公園</a> (MC: 206 442 075*11)。", map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6","206 312 039*17"]]},
+    {t:"10:30",a:"古宇利島 玻璃船",det:["🚗 約80分","大人¥3,000"], rain:"因 D4 已安排動植物園，若下大雨建議將 D3/D4 行程對調，或改去 <a href='https://www.google.com/maps/search/?api=1&query=部瀬名海中公園' target='_blank'>部瀨名海中公園</a> (MC: 206 442 075*11) 海中展望塔。", map:[["古宇利玻璃船","https://maps.app.goo.gl/o9XNhAKjN6j1LZFE6","206 312 039*17"]]},
     {t:"12:00",a:"午餐：Poke Bowls",det:["步行","¥3,500"],map:[["Poke Bowls","https://maps.app.goo.gl/ymNNktqFZMBWehtd6"]]},
     {t:"14:00",a:"名護超市補貨",det:["🚗 約30分","¥3,000"],map:[["MaxValu Nago","https://maps.app.goo.gl/dq8aZ1fjBj83Wq65A","206 688 674*44"]]},
     {t:"15:30",a:"萬座毛（絕景海崖）",det:["🚗 約30分","¥100"],map:[["萬座毛","https://maps.app.goo.gl/hBGHvrEpenAV5Ndb6","206 312 039*17"]]},
@@ -428,7 +427,7 @@ const packing = [
   {h:"👶 嬰兒（8個月）",items:["尿布/濕紙巾","副食品/奶粉/奶瓶","揹巾/輕便推車","防曬/口水巾"]},
   {h:"🧒 小孩（7歲）",items:["替換衣物/泳衣","帽子/防曬","玩沙工具","平板/玩具/零食"]},
   {h:"🎒 共同裝備",items:["薄外套（冷氣強）","雨具","保溫瓶","行動電源","轉接頭（日本A型）"]},
-  {h:"💊 備用藥品 (必備)",items:["兒童退燒藥水 / 塞劑","成人退燒 / 止痛藥 (普拿疼/布洛芬)","綜合感冒藥 (咳嗽/流鼻水)","腸胃藥 (止瀉/胃藥/益生菌)","外用 (OK繃/蚊蟲藥膏/外傷藥膏)","暈車藥 (兒童/成人)","耳溫槍 (常忘記帶！)"]},
+  {h:"💊 備用藥品 (必備)",items:["兒童退燒藥水 / 塞劑","成人退燒 / 止痛藥 (普拿疼/布洛芬)","綜合感冒藥 (咳嗽/流鼻水)","腸胃藥 (止瀉/胃藥/益生菌)","外用 (OK繃/蚊蟲藥膏/外傷藥膏)"]},
 ];
 
 const budget = [
@@ -447,6 +446,7 @@ const officialLinks = [
   {n: "名護鳳梨園", url: "https://www.nagopine.com/index.html"},
   {n: "名護動植物園", url: "https://www.neopark.co.jp/"},
   {n: "日本氣象廳 (潮汐表)", url: "https://s.n-kishou.co.jp/w/sp/tide/tide_pref.html?f=47"},
+  {n: "當地旅平險加保 (東京海上日動)", url: "https://tokiomarinenichido.jp/zh-hant/china2/"}
 ];
 
 const notes = [
@@ -617,7 +617,6 @@ document.querySelectorAll("#nav button").forEach(b=>{
     if(b.dataset.tab==="p-note"&&boardApi())loadBoard();
     window.scrollTo({top:0,behavior:"smooth"});
     
-    // 如果點到較邊緣的按鈕，讓導航列自動捲動對齊
     b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   };
 });
