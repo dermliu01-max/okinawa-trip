@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!-- PWA 設定 -->
 <meta name="theme-color" content="#0a8ea0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -226,12 +225,11 @@
     </div>
   </section>
 
-  <!-- 交通 -->
   <section class="page" id="p-trans">
     <h2 class="section">✈️ 去程航班 (NU 302)</h2>
     <div class="block">
       <div class="kv"><b>時間</b><span>7/2 10:05 桃機T2 → 12:45 那霸T1</span></div>
-      <div class="kv"><b>代號</b><span style="font-family:monospace;font-weight:700;color:var(--sea-d)">AO54QA</span></div>
+      <div class="kv"><b>代號</b><span style="font-family:monospace;font-weight:700;color:var(--sea-d)">EA8P42</span></div>
       <div class="kv"><b>座位</b><span>13A、13B、13C</span></div>
       <div class="kv"><b>餐點</b><span>簡餐<br><small style="color:var(--muted)">💡 抵達已近下午，請在貴賓室先吃飽！</small></span></div>
       <div class="kv"><b>行李</b><span>嬰兒：1件23kg (推車/汽座免費託運)<br>其他：2件23kg/人<br><b>共計：可託運 7 件</b></span></div>
@@ -265,20 +263,17 @@
     </div>
   </section>
 
-  <!-- 住宿 -->
   <section class="page" id="p-hotel">
     <h2 class="section">🏨 住宿</h2>
     <div id="hotels"></div>
   </section>
 
-  <!-- 行李 -->
   <section class="page" id="p-pack">
     <h2 class="section">🧳 行李清單</h2>
     <p style="font-size:13px;color:var(--muted);margin:0 2px 12px">點擊打勾，狀態會自動儲存 ✓</p>
     <div id="packing"></div>
   </section>
 
-  <!-- 預算與實用連結 -->
   <section class="page" id="p-budget">
     <h2 class="section">💰 預算總覽 (日圓)</h2>
     <div class="block"><div id="budget"></div></div>
@@ -301,13 +296,11 @@
     <button class="btn ghost full" style="margin-top:16px" onclick="window.print()">🖨️ 匯出完整行程 PDF</button>
   </section>
 
-  <!-- 攻略 -->
   <section class="page" id="p-tips">
     <h2 class="section">💡 在地攻略・心得</h2>
     <div id="notes"></div>
   </section>
 
-  <!-- 日語溝通 -->
   <section class="page" id="p-lang">
     <h2 class="section">🗣️ 溝通小卡</h2>
     <div class="block">
@@ -321,7 +314,6 @@
     </div>
   </section>
 
-  <!-- 留言板 -->
   <section class="page" id="p-note">
     <h2 class="section">📝 家庭留言板</h2>
     <div class="block">
@@ -630,7 +622,13 @@ const BOARD_API="";
 function boardApi(){return (localStorage.getItem("okinote_boardapi")||BOARD_API||"").trim();}
 
 function esc(s){
-  const map = {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"};
+  const map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  };
   return String(s).replace(/[&<>"']/g, c => map[c]);
 }
 
